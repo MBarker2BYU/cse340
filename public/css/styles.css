@@ -4,3 +4,277 @@
 *:after {
   box-sizing: border-box;
 }
+
+:root {
+  --osu-black: #000000;
+  /* OSU Black */
+  --osu-scarlet: #BB0000;
+  /* OSU Scarlet */
+  --osu-gray: #666666;
+  /* OSU Gray */
+  --osu-white: #FFFFFF;
+  /* OSU White */
+
+  --osu-light-gray: #B0B0B0;
+  /* Light gray for dark mode */
+  --osu-dark-gray: #333333;
+  /* Dark gray for dark mode */
+
+  --heading-font: "Stardos Stencil", Arial, serif;
+  --text-font: "Allerta Stencil", Arial, serif;
+
+  --frosted-glass: rgba(255, 255, 255, 0.25);
+  --smoked-glass: rgba(0, 0, 0, 0.25);
+  --shadow-color: rgba(0, 0, 0, 0.65);
+
+  --header-footer-border-radius: 8px;
+  --border-radius: 10px;
+  --button-border-radius: 5px;
+}
+
+body{      
+  margin: 0;
+}
+
+#container {
+  max-width: 800px;
+  margin: 0;
+  padding: 0 1rem;  
+}
+
+header
+{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.75rem 0;
+}
+
+.siteName a{
+  color: var(--osu-black);
+  text-decoration: none;
+  font-family: var(--heading-font);
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+#tools a {
+  color: var(--osu-black);
+  text-decoration: none;
+  font-family: var(--text-font);
+  font-size: 1.2rem;
+  display: inline-block;
+  position: relative;
+  transition: transform 0.3s;
+}
+
+#tools a:hover {
+  transform: scale(1.1);
+}
+
+nav {  
+  background-color: var(--osu-scarlet);  
+}
+
+.nav-list li {
+  padding: 0.25rem;
+}
+
+.nav-list {
+  display: flex;
+  justify-content:space-evenly;
+  list-style: none;
+  padding: 10px;
+  margin: 0;
+}
+
+.nav-list a {
+  color: var(--osu-white);
+  text-decoration: none;
+  display: inline-block;
+  position: relative;
+  transition: transform 0.3s;
+}
+
+.nav-list a:hover {
+  transform: scale(1.2);   
+}
+
+.hero{
+  position: relative;
+  height: 275px;
+  padding: 0;
+  display: flex; 
+  justify-content: center; 
+  align-items: center; 
+  overflow: hidden; 
+}
+
+.hero img {
+  max-width: 100%; 
+  max-height: 100%; 
+  width: auto; 
+  height: auto; 
+  object-fit: contain; 
+  display: block; 
+  margin: 0 auto; 
+}
+
+.hero-content {
+    position: absolute;
+    left: 15px;
+    top: 30%;
+    font-size: medium;
+    transform: translateY(-50%);
+    background-color: var(--smoked-glass);
+    padding: 10px;
+    color: var(--osu-black);
+    border-radius: var(--header-footer-border-radius);
+    box-shadow: 0 4px 8px var(--shadow-color);
+}
+
+.hero-content h3 {
+    margin: 0 0 10px 0;
+}
+
+.hero-content p {
+    margin: 0 0 10px 0;
+}
+
+.hero-content button {
+    background-color: var(--osu-scarlet);
+    font-weight: bold;
+    border: none;
+    padding: 10px 20px;
+    color: var(--osu-white);
+    cursor: pointer;
+    border-radius: var(--button-border-radius);
+}
+
+.hero-content button:hover {
+    background-color: var(--osu-gray);
+}
+
+.upgrades-section
+{
+  display: grid; display: grid;
+  grid-template-columns: repeat(2, 1fr); 
+  grid-template-rows: auto auto; 
+  gap: 10px; 
+  align-items: center; 
+}
+
+.upgrades-section h3
+{
+  grid-column: 1 / -1;
+}
+
+.upgrade-item-container
+{
+  display: flex;
+  flex-direction: column;
+  align-items: center;    
+}
+
+.upgrade-item
+{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--frosted-glass);
+  border-radius: var(--border-radius);
+  padding: 1rem;
+  border: var(--osu-scarlet) 1px solid;
+  box-shadow: 0 4px 8px var(--shadow-color);
+  width: 100%; 
+  max-height: 100px;
+  overflow: hidden; 
+}
+
+.upgrade-item img {
+  max-width: 65px; 
+  max-height: 65px; 
+  margin-bottom: 10px; 
+}
+
+.upgrade-item-container a {
+  padding-top: 5px;
+  text-align: center;  
+}
+
+.upgrades-reviews {
+  display: flex;
+  flex-direction: column-reverse; 
+  gap: 5px; 
+  margin-top: 5px;
+}
+
+.review-item{
+  font-size: large;
+}
+
+footer {
+  margin: 0;
+  padding-top: 1.5rem;
+}
+
+footer p {
+  margin: 0;
+  padding-top: 10px;
+}
+
+@media (min-width: 768px) {
+
+  body{
+    background-image: url('/images/site/small_check-v2.webp');
+    background-repeat: repeat;
+    border: var(--osu-scarlet) 2px solid;
+    width: 100vw;
+    height: 100vh;
+  }
+
+  #container {
+    background-color: var(--osu-white);
+    width: 90%;    
+    margin: 1rem auto;    
+    padding: 1rem;
+    border: var(--osu-scarlet) 3px solid;
+    border-radius: var(--border-radius);
+  } 
+  
+  .hero {
+        height: 400px; 
+        padding: 10px; 
+    }
+
+    .hero-image {
+        max-width: 100%; 
+        object-fit: cover; 
+    }
+
+    .hero-content {
+        font-size: x-large;
+        left: 30px; 
+        padding: 15px; 
+    }
+
+    .hero-content button {
+        font-size:large;        
+        padding: 15px 30px; 
+    }
+    
+    .upgrades-reviews {
+    flex-direction: row; 
+    flex-wrap: nowrap;
+    gap: 40px; 
+  }
+
+  .upgrades-section {
+    flex: 1;
+  }
+
+  .reviews-section {
+    flex: 1;
+    min-width: 0;
+  }
+}
