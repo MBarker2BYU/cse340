@@ -1,9 +1,15 @@
 <div class="vehicle-detail">
-  <img src="<%= vehicle.inv_image %>" alt="<%= vehicle.inv_make %> <%= vehicle.inv_model %>" class="vehicle-image">
-  <div class="vehicle-info">
-    <p>Year: <%= vehicle.inv_year %></p>
-    <p>Price: <%= Number(vehicle.inv_price).toLocaleString('en-US', { style: 'currency', currency: 'USD' }) %></p>
-    <p>Mileage: <%= vehicle.inv_miles.toLocaleString('en-US') %> miles</p>
-    <p>Description: <%= vehicle.inv_description %></p>
+  <div class="vehicle-title"><%= vehicle.inv_year %> <%= vehicle.inv_make %> <%= vehicle.inv_model %></div>
+  <div class="vehicle-content">
+    <div>
+      <img src="<%= vehicle.inv_image %>" alt="<%= vehicle.inv_make %> <%= vehicle.inv_model %>" class="vehicle-image">
+    </div>
+    <div class="vehicle-info">
+      <p class="vehicle-detail-title"><%= vehicle.inv_make %> <%= vehicle.inv_model %> Details</p>
+      <p><span>Price:</span> $<%= new Intl.NumberFormat('en-US').format(vehicle.inv_price) %></p>
+      <p><span>Description:</span> <%= vehicle.inv_description %></p>
+      <p><span>Color:</span> <%= vehicle.inv_color %></p>
+      <p><span>Miles:</span> <%= vehicle.inv_miles.toLocaleString('en-US') %></p>
+    </div>
   </div>
 </div>

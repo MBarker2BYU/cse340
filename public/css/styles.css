@@ -236,7 +236,7 @@ footer p {
 .inventory-card {
   background-color: var(--osu-white);
   border: 1px solid var(--osu-scarlet);
-  border-radius: 5px;
+  border-radius: var(--border-radius);
   overflow: hidden;
   transition: transform 0.2s;
   max-width: 350px;
@@ -253,7 +253,7 @@ footer p {
 .card-image-container {
   flex-shrink: 0; 
   height: 200px;
-  border-bottom: #BB0000 3px solid;   
+  border-bottom: var(--osu-scarlet) 3px solid;   
 }
 
 .card-image {
@@ -283,6 +283,66 @@ footer p {
   padding: 15px 0;
 }
 
+/* Vehicle Detail */
+
+.vehicle-detail {
+  max-width: 700px;
+  margin: 20px auto;
+  padding: 20px;
+  min-height: 300px;
+  border: 1px solid var(--osu-scarlet);
+  border-radius: var(--border-radius);
+  font-family: Arial, sans-serif;
+  box-shadow: 4px 4px 8px var(--shadow-color);
+}
+
+.vehicle-title {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  text-align: left;
+}
+
+.vehicle-content {
+  display: block;
+}
+
+.vehicle-content > div:first-child {
+  display: flex;
+  justify-content: center;
+  align-items: center;  
+  margin: 0 auto 10px;
+}
+
+.vehicle-image {
+  max-width: 350px;
+  max-height: 350px;
+  width: auto;
+  height: auto;
+  padding: 10px;
+}
+
+.vehicle-info {
+  padding-left: 0;
+  text-align: center;
+}
+
+.vehicle-info p {
+  margin: 5px 0;
+  color: var(--osu-black);
+  font-size: 14px;
+  margin: 20px 0;
+}
+
+.vehicle-detail-title {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.vehicle-info p span {
+  font-weight: bold;
+}
+
 @media (min-width: 768px) {
 
   body{
@@ -303,27 +363,27 @@ footer p {
   } 
   
   .hero {
-        height: 400px; 
-        padding: 10px; 
-    }
+      height: 400px; 
+      padding: 10px; 
+  }
 
-    .hero-image {
-        max-width: 100%; 
-        object-fit: cover; 
-    }
+  .hero-image {
+      max-width: 100%; 
+      object-fit: cover; 
+  }
 
-    .hero-content {
-        font-size: x-large;
-        left: 30px; 
-        padding: 15px; 
-    }
+  .hero-content {
+      font-size: x-large;
+      left: 30px; 
+      padding: 15px; 
+  }
 
-    .hero-content button {
-        font-size:large;        
-        padding: 15px 30px; 
-    }
-    
-    .upgrades-reviews {
+  .hero-content button {
+      font-size:large;        
+      padding: 15px 30px; 
+  }
+  
+  .upgrades-reviews {
     flex-direction: row; 
     flex-wrap: nowrap;
     gap: 40px; 
@@ -341,6 +401,19 @@ footer p {
   .inventory-grid {
     grid-template-columns: repeat(auto-fit, minmax(0, 260px)); /* Auto-fit up to 3 cards */
     max-width: 900px; /* Approx 3 x 280px + gaps, adjustable */
+  }
+
+  .vehicle-content {
+    display: flex;
+  }
+
+  .vehicle-content > div:first-child {
+    margin: 0 10px 0 0;
+  }
+  
+  .vehicle-info {
+    text-align: left;
+    padding-left: 10px;
   }
 
 }
