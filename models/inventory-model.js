@@ -4,7 +4,11 @@ const pool = require("../database/")
  * Get all classification data
  * ************************** */
 async function getClassifications() {
-  return await pool.query("SELECT * FROM public.classification ORDER BY classification_name")
+  try {
+    return await pool.query("SELECT * FROM public.classification ORDER BY classification_name");
+  } catch (error) {
+    throw new Error(`Database error: ${error.message}`);
+  }
 }
 
 /* ***************************
@@ -19,10 +23,20 @@ async function getInventoryByClassificationId(classification_id) {
       WHERE i.classification_id = $1`,
       [classification_id]
     )
-    return data.rows
+    return data.rows;
   } catch (error) {
-    console.error("getclassificationsbyid error " + error)
+    throw new Error(`Database error: ${error.message}`)
   }
 }
 
-module.exports = { getClassifications, getInventoryByClassificationId }
+async function getVehicleById(vehicleId) {
+  try {
+    const sql = 'SELECT * FROM inventory WHERE inv_id = $1';
+    const result = await pool.query(sql, [vehicleId]);
+    return result.rows[0]; // Return the first matching record
+  } catch (error) {
+    throw new Error(`Database error: ${error.message}`);
+  }
+}
+
+module.exports = { getClassifications, getInventoryByClassificationId, getVehicleById }

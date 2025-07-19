@@ -37,7 +37,7 @@ body{
 }
 
 #container {
-  max-width: 800px;
+  max-width: 900px;
   margin: 0;
   padding: 0 1rem;  
 }
@@ -223,6 +223,66 @@ footer p {
   padding-top: 10px;
 }
 
+/* Inventory Grid and Cards */
+.inventory-grid {
+  display: grid;
+  grid-template-columns: 1fr; /* Single column by default (mobile) */
+  gap: 20px;
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.inventory-card {
+  background-color: var(--osu-white);
+  border: 1px solid var(--osu-scarlet);
+  border-radius: 5px;
+  overflow: hidden;
+  transition: transform 0.2s;
+  max-width: 350px;
+  width: 100%;
+  text-align: center;
+  height: 300px;  
+  box-shadow: 6px 6px 6px var(--shadow-color);
+}
+
+.inventory-card:hover {
+  transform: scale(1.05);
+}
+
+.card-image-container {
+  flex-shrink: 0; 
+  height: 200px;
+  border-bottom: #BB0000 3px solid;   
+}
+
+.card-image {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  padding: 10px;
+  margin: 0 auto;  
+}
+
+.card-content {
+  margin-top: auto;
+  padding: 10px;
+  text-align: center;
+  border-top: var(--shadow-color) 2px solid;  
+}
+
+.card-content h2 {
+  margin: 0;
+  font-size: 1.2rem;
+}
+
+.card-content span {
+  display: block;
+  font-size: 1.1rem;
+  color: var(--osu-dark-gray);
+  padding: 15px 0;
+}
+
 @media (min-width: 768px) {
 
   body{
@@ -277,4 +337,10 @@ footer p {
     flex: 1;
     min-width: 0;
   }
+
+  .inventory-grid {
+    grid-template-columns: repeat(auto-fit, minmax(0, 260px)); /* Auto-fit up to 3 cards */
+    max-width: 900px; /* Approx 3 x 280px + gaps, adjustable */
+  }
+
 }
