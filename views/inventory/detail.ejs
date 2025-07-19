@@ -2,7 +2,7 @@
   <img src="<%= vehicle.inv_image %>" alt="<%= vehicle.inv_make %> <%= vehicle.inv_model %>" class="vehicle-image">
   <div class="vehicle-info">
     <p>Year: <%= vehicle.inv_year %></p>
-    <p>Price: <%= vehicle.inv_price.toLocaleString('en-US', { style: 'currency', currency: 'USD' }) %></p>
+    <p>Price: <%= Number(vehicle.inv_price).toLocaleString('en-US', { style: 'currency', currency: 'USD' }) %></p>
     <p>Mileage: <%= vehicle.inv_miles.toLocaleString('en-US') %> miles</p>
     <p>Description: <%= vehicle.inv_description %></p>
   </div>
