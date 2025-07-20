@@ -12,12 +12,7 @@ router.get('/detail/:inv_id', utilities.handleErrors(inventoryController.getVehi
 router.get('/error', utilities.handleErrors(inventoryController.triggerError));
 
 async function triggerError(req, res, next) {
-  try {
-    throw new Error('Intentional 500 Error');
-  } catch (error) {
-    error.status = 500;
-    next(error);
-  }
+  next(new Error('Intentional 500 Error'));  
 }
 
 module.exports = {router, triggerError};

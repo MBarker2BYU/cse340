@@ -22,35 +22,49 @@ app.set("view engine", "ejs")
 app.use(expressLayouts)
 app.set("layout", "./layouts/layout") // not at views root
 
+app.use(async (req, res, next) => {
+    try {
+        res.locals.nav = await utilities.getNav();
+        next();
+    } catch (err) {
+        next(err); // Pass any errors to the 500 handler
+    }
+});
+
 /* ***********************
  * Routes
  *************************/
-app.use(static)
+app.use(utilities.handleErrors(static))
 app.get("/", utilities.handleErrors(baseController.buildHome))
-app.use("/inv", inventoryRoute.router);
+app.use("/inv", utilities.handleErrors(inventoryRoute.router));
 
-// File Not Found Route - must be last route in list
-app.use(async (req, res, next) => {
-  next({status: 404, message: 'Sorry, we appear to have lost that page.'})
-})
+app.get("/test404", (req, res) => res.status(404).render('errors/error', { title: 'Test 404', message: 'Test 404 message' }));
+
+// 404 Error Handler
+app.use((req, res, next) => {
+  console.log(`404 Handler: ${req.originalUrl}`);
+    res.status(404).render('errors/error', {
+      title: 'Error 404 - Page Not Found',
+      message: 'The page you are looking for called in lost and won\'t be in today. Try again Tomorrow.',
+  });
+});
 
 /* ***********************
-* Express Error Handler
-* Place after all other middleware
-*************************/
+ * Express Error Handler
+ * For unhandled server errors only
+ *************************/
 app.use(async (err, req, res, next) => {
-  let nav = await utilities.getNav()
-
-  console.error(`Error at: "${req.originalUrl}": ${err.message}`)
-    
-  let message = err.status === 404 ? err.message : 'Oh no! There was a crash. Maybe try a different route?'
-
-  res.render("errors/error", {
-    title: err.status || 'Server Error',
-    message,
-    nav
-  })
-})
+    console.error(`Error at: "${req.originalUrl}": ${err.message}`);
+    try {
+        res.status(500).render("errors/error", {
+            title: "Server Error",
+            message: "We've hit the wall in turn 4 doing a buck fifty and cracked up the car. Our pit crew is on it!"
+            // nav is already in res.locals from the middleware
+        });
+    } catch (err) {
+        next(err); // Handle any rendering errors
+    }
+});
 
 /* ***********************
  * Local Server Information

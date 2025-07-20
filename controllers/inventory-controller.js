@@ -6,7 +6,7 @@ const inventoryController = {}
 /* ***************************
  *  Build inventory by classification view
  * ************************** */
-inventoryController.buildByClassificationId = utilities.handleErrors(async function (req, res, next) {
+inventoryController.buildByClassificationId = async function (req, res, next) {
   const classification_id = req.params.classificationId
   const data = await inventoryModel.getInventoryByClassificationId(classification_id)
   const grid = await utilities.buildClassificationGrid(data)
@@ -20,9 +20,9 @@ inventoryController.buildByClassificationId = utilities.handleErrors(async funct
     nav,
     grid,
   });
-});
+};
 
-inventoryController.getVehicleDetail = utilities.handleErrors(async function (req, res, next) {
+inventoryController.getVehicleDetail = async function (req, res, next) {
   
     const vehicleId = req.params.inv_id;
     const vehicleData = await inventoryModel.getVehicleById(vehicleId);
@@ -34,18 +34,19 @@ inventoryController.getVehicleDetail = utilities.handleErrors(async function (re
         throw new Error('Vehicle not found');
 
     const nav = await utilities.getNav();
+    
     res.render("./inventory/detail", {
       title: `${vehicleData.inv_make} ${vehicleData.inv_model}`,
       nav,
       vehicle: vehicleData // Pass vehicle data directly
     });  
-});
+};
 
 /* ***************************
  *  Trigger intentional error
  * ************************** */
-inventoryController.triggerError = utilities.handleErrors(async (req, res, next) => {
+inventoryController.triggerError = async (req, res, next) => {
   throw new Error('Intentional 500 Error');
-});
+};
 
 module.exports = inventoryController;
