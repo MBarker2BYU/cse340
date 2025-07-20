@@ -38,7 +38,7 @@ app.use(utilities.handleErrors(static))
 app.get("/", utilities.handleErrors(baseController.buildHome))
 app.use("/inv", utilities.handleErrors(inventoryRoute.router));
 
-app.get("/test404", (req, res) => res.status(404).render('errors/error', { title: 'Test 404', message: 'Test 404 message' }));
+// app.get("/test404", (req, res) => res.status(404).render('errors/error', { title: 'Test 404', message: 'Test 404 message' }));
 
 // 404 Error Handler
 app.use((req, res, next) => {
