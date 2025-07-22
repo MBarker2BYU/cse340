@@ -12,8 +12,8 @@ const env = require("dotenv").config()
 const app = express()
 const static = require("./routes/static")
 const baseController = require("./controllers/baseController")
-const inventoryRoute = require("./routes/inventory-route");
-const utilities = require("./utilities/");
+const inventoryRoute = require("./routes/inventory-route")
+const utilities = require("./utilities/")
 
 /* ***********************
  * View Engine and Templates
@@ -24,10 +24,10 @@ app.set("layout", "./layouts/layout") // not at views root
 
 app.use(async (req, res, next) => {
     try {
-        res.locals.nav = await utilities.getNav();
-        next();
+        res.locals.nav = await utilities.getNav()
+        next()
     } catch (err) {
-        next(err); // Pass any errors to the 500 handler
+        next(err) // Pass any errors to the 500 handler
     }
 });
 
@@ -36,13 +36,13 @@ app.use(async (req, res, next) => {
  *************************/
 app.use(utilities.handleErrors(static))
 app.get("/", utilities.handleErrors(baseController.buildHome))
-app.use("/inv", utilities.handleErrors(inventoryRoute.router));
+app.use("/inv", utilities.handleErrors(inventoryRoute.router))
 
 // app.get("/test404", (req, res) => res.status(404).render('errors/error', { title: 'Test 404', message: 'Test 404 message' }));
 
 // 404 Error Handler
 app.use((req, res, next) => {
-  console.log(`404 Handler: ${req.originalUrl}`);
+  console.log(`404 Handler: ${req.originalUrl}`)
     res.status(404).render('errors/error', {
       title: 'Error 404 - Page Not Found',
       message: 'The page you are looking for called in lost and won\'t be in today. Try again Tomorrow.',
@@ -54,7 +54,7 @@ app.use((req, res, next) => {
  * For unhandled server errors only
  *************************/
 app.use(async (err, req, res, next) => {
-    console.error(`Error at: "${req.originalUrl}": ${err.message}`);
+    console.error(`Error at: "${req.originalUrl}": ${err.message}`)
     try {
         res.status(500).render("errors/error", {
             title: "Server Error",
