@@ -10,6 +10,9 @@
   /* OSU Black */
   --osu-scarlet: #BB0000;
   /* OSU Scarlet */
+  --osu-darken-scarlet: #950000;
+  /* Darkened OSU Scarlet */
+
   --osu-gray: #666666;
   /* OSU Gray */
   --osu-white: #FFFFFF;
@@ -395,8 +398,7 @@ footer p {
 
   .login-container button:hover,
   .registration-container button:hover {
-      /* background-color: var(--osu-scarlet); */
-      transform: scale(1.1);
+       background-color: var(--osu-darken-scarlet);          
   }
 
   .login-container a {
@@ -415,15 +417,16 @@ footer p {
         display: flex;
         align-items: center;
         width: 100%;
-    }
-    .eye-icon {
-        position: absolute;
-        top: 2px;
-        right: 5px;
-        width: 32px;
-        height: 32px;
-        cursor: pointer;
-    }
+  }
+
+  .eye-icon {
+      position: absolute;
+      top: 2px;
+      right: 5px;
+      width: 32px;
+      height: 32px;
+      cursor: pointer;
+  }
 
 @media (min-width: 768px) {
 
