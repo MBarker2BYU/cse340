@@ -1,0 +1,58 @@
+<% if (title) {%>
+<h1><%= title %></h1>
+<%} else {res.redirect('/')} %>
+
+<%- messages() %>
+
+<% if (errors) { %>
+<ul class="message warning">
+  <% errors.array().forEach(error => { %>
+  <li><%= error.msg %></li>
+  <%  }) %>
+</ul>
+<% } %>
+
+
+<div class="add-inventory-wrapper">
+    <form class="add-inventory" action="/inv/addInventory" method="POST">
+        <fieldset>
+                <label for="classificationList">Classification</label>
+                <%- classificationSelect %>
+
+                <label for="inventoryMake">Make</label>
+                <input type="text" id="inventoryMake" name="inventoryMake" value="<%= locals.inventoryMake %>" required
+                    pattern="[a-zA-Z0-9\s]*" placeholder="e.g., Chevrolet, Toyota, Ford, Honda" minlength="3">
+
+                <label for="inventoryModel">Model</label>
+                <input type="text" id="inventoryModel" name="inventoryModel" value="<%= locals.inventoryModel %>"
+                    required pattern="[a-zA-Z0-9\s]*" placeholder="e.g., Corvette, Camry, Accord, Civic" minlength="3">
+
+                <label for="inventoryDescription">Description</label>
+                <textarea id="inventoryDescription" name="inventoryDescription" required placeholder="e.g., A reliable sedan with great fuel economy"><%= locals.inventoryDescription %></textarea>                
+
+                <label for="inventoryImage">Image Path</label>
+                <input type="text" id="inventoryImage" name="inventoryImage" size="30" required <% if(locals.inventoryImage) { %> value="<%= locals.inventoryImage %>" <% } else { %> value="/images/vehicles/no-image.png" <% } %>>
+
+                <label for="inventoryThumbnail">Thumbnail Path</label>
+                <input type="text" id="inventoryThumbnail" name="inventoryThumbnail" size="30" required <% if(locals.inventoryThumbnail) { %> value="<%= locals.inventoryThumbnail %>" <% } else { %> value="/images/vehicles/no-image.png" <% } %>>
+
+                <label for="inventoryPrice">Price</label>
+                <input type="number" id="inventoryPrice" name="inventoryPrice" value="<%= locals.inventoryPrice %>"
+                    required min="0" size="10" placeholder="e.g., 30000">
+
+                <label for="inventoryYear">Year</label>
+                <input type="number" id="inventoryYear" name="inventoryYear" value="<%= locals.inventoryYear %>"
+                    required size="10" min="1886" max="<%= new Date().getFullYear() %>" placeholder="e.g., 2023">
+
+                <label for="inventoryMiles">Miles</label>
+                <input type="number" id="inventoryMiles" name="inventoryMiles" value="<%= locals.inventoryMiles %>"
+                    required min="0" size="10" placeholder="e.g., 15000">
+
+                <label for="inventoryColor">Color</label>
+                <input type="text" id="inventoryColor" name="inventoryColor" value="<%= locals.inventoryColor %>"
+                    required pattern="[a-zA-Z\s]*" placeholder="e.g., Red, Blue, Black, White">
+                
+        </fieldset>
+        <button type="submit">Add Inventory Item</button>
+    </form>
+</div>
