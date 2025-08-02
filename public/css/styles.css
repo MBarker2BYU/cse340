@@ -390,7 +390,7 @@ footer p {
   }
 
   .login-container input,
-  .registration-container input 
+  .registration-container input, 
   .add-classification-wrapper input,
   .add-inventory-wrapper input {
       width: 100%;

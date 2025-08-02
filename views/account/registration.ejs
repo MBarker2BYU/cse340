@@ -5,6 +5,7 @@
 <%- messages() %>
 
 <% if (errors) { %>
+    
 <ul class="message warning">
   <% errors.array().forEach(error => { %>
   <li><%= error.msg %></li>
@@ -18,9 +19,9 @@
         <form id="register-form" action="/account/register" method="post">
             <fieldset>
             <label for="firstname">First name:</label>
-            <input type="text" name="account_firstname" id="firstname" size="10" required value="<%= locals.account_firstname %>">
+            <input type="text" name="account_firstname" id="firstname" size="10" required value="<%= locals.account_firstname %>" placeholder="Enter your first name">
             <label for="lastname">Last name:</label>
-            <input type="text" name="account_lastname" id="lastname" required value="<%= locals.account_lastname %>">
+            <input type="text" name="account_lastname" id="lastname" required value="<%= locals.account_lastname %>" placeholder="Enter your last name">
             <label for="email">Email Address:</label>
             <input type="email" name="account_email" id="email" required value="<%= locals.account_email %>" placeholder="Enter a valid email address">
             <label for="password">Password:</label>
@@ -34,4 +35,3 @@
         </form>
     </div>
 </div>
-<script src="/js/script.js"></script>
