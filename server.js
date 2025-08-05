@@ -57,9 +57,9 @@ app.use(async (req, res, next) => {
 /* ***********************
  * Routes
  *************************/
-app.use(utilities.handleErrors(static))
-app.get("/", utilities.handleErrors(baseController.buildHome))
-app.use("/inv", utilities.handleErrors(inventoryRoute.router))
+app.use(static)
+app.get("/", baseController.buildHome)
+app.use("/inv", inventoryRoute.router)
 app.use("/account", accountRoute)
 
 // app.get("/test404", (req, res) => res.status(404).render('errors/error', { title: 'Test 404', message: 'Test 404 message' }));
