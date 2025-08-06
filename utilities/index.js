@@ -1,4 +1,7 @@
 const inventoryModel = require("../models/inventory-model")
+const jwt = require("jsonwebtoken")
+require("dotenv").config()
+
 const Util = {}
 
 
@@ -63,6 +66,7 @@ Util.buildClassificationGrid = async function(data) {
 Util.buildClassificationList = async function (classification_id = null) {
     let data = await inventoryModel.getClassifications()
     let classificationList =
+
         '<select name="classification_id" id="classificationList" required>'
     classificationList += "<option value=''>Choose a Classification</option>"
     data.rows.forEach((row) => {
@@ -104,11 +108,35 @@ Util.buildSingleVehicleDisplay = async function (data) {
     return grid
 }
 
+
 /* ****************************************
  * Middleware For Handling Errors
  * Wrap other function in this for 
  * General Error Handling
  **************************************** */
 Util.handleErrors = fn => (req, res, next) => Promise.resolve(fn(req, res, next)).catch(next)
+
+/* ****************************************
+* Middleware to check token validity
+**************************************** */
+Util.checkJWTToken = (req, res, next) => {
+ if (req.cookies.jwt) {
+  jwt.verify(
+   req.cookies.jwt,
+   process.env.ACCESS_TOKEN_SECRET,
+   function (err, accountData) {
+    if (err) {
+     req.flash("Please log in")
+     res.clearCookie("jwt")
+     return res.redirect("/account/login")
+    }
+    res.locals.accountData = accountData
+    res.locals.loggedin = 1
+    next()
+   })
+ } else {
+  next()
+ }
+}
 
 module.exports = Util

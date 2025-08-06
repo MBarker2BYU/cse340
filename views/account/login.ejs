@@ -5,10 +5,11 @@
 <% } else { res.redirect('/') } %>
 
 <%- messages() %>
+
 <div class="login-wrapper">
     <div class="login-container">
         <fieldset>
-            <form action="/account/login" method="POST">
+            <form id="login-form" action="/account/login" method="POST">
                 <label for="email">Email:</label>
                 <input type="email" id="email" name="email" placeholder="Email" required>
                 <label for="password">Password:</label>
@@ -22,4 +23,3 @@
         <a href="/account/registration">No account? Sign-up</a>
     </div>
 </div>
-<script src="/js/script.js"></script>

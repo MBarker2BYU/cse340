@@ -1,11 +1,30 @@
 const pool = require("../database/")
 
+function executeQuery(sql, params = [], errorMessage = "Database query failed") {
+  try {
+
+    const data = pool.query(sql, params)
+
+    return data;
+
+  } catch (error) {
+    
+    // Capture detailed error information
+    const detailedError = `${errorMessage}: ${error.message} (SQL: ${sql}, Params: ${JSON.stringify(params)})`;
+    // Log the error for debugging
+    console.error(detailedError); 
+    // Throw a new error to propagate it to the controller/middleware
+    throw new Error(detailedError);
+
+  }
+}
+
 /* ***************************
  * Get all classification data
  * ************************** */
 async function getClassifications() {
   try {
-    return await pool.query("SELECT * FROM public.classification ORDER BY classification_name");
+    return await executeQuery("SELECT * FROM public.classification ORDER BY classification_name");
   } catch (error) {
     throw new Error(`Database error: ${error.message}`);
   }
@@ -16,7 +35,7 @@ async function getClassifications() {
  * ************************** */
 async function getInventoryByClassificationId(classification_id) {
   try {
-    const data = await pool.query(
+    const data = await executeQuery(
       `SELECT * FROM public.inventory AS i 
       JOIN public.classification AS c 
       ON i.classification_id = c.classification_id 
@@ -46,10 +65,11 @@ async function getClassificationName(classification_id) {
   }
 }
 
+
 async function getVehicleById(vehicleId) {
   try {
     const sql = 'SELECT * FROM inventory WHERE inv_id = $1';
-    const result = await pool.query(sql, [vehicleId]);
+    const result = await executeQuery(sql, [vehicleId]);
     return result.rows[0]; // Return the first matching record
   } catch (error) {
     throw new Error(`Database error: ${error.message}`);
