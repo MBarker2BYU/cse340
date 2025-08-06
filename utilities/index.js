@@ -60,6 +60,49 @@ Util.buildClassificationGrid = async function(data) {
   return grid;
 };
 
+Util.buildClassificationList = async function (classification_id = null) {
+    let data = await inventoryModel.getClassifications()
+    let classificationList =
+        '<select name="classification_id" id="classificationList" required>'
+    classificationList += "<option value=''>Choose a Classification</option>"
+    data.rows.forEach((row) => {
+        classificationList += '<option value="' + row.classification_id + '"'
+        if (
+            classification_id != null &&
+            row.classification_id == classification_id
+        ) {
+            classificationList += " selected "
+        }
+        classificationList += ">" + row.classification_name + "</option>"
+    })
+    classificationList += "</select>"
+    return classificationList
+}
+
+Util.buildSingleVehicleDisplay = async function (data) {
+    let grid = '<section id="vehicle-display">'
+    grid += `<div>`
+    grid += '<section class="imagePrice">'
+    grid += `<img src="${data.inv_image}" alt="Image of ${data.inv_make} ${data.inv_model}">`
+    grid += '</section>'
+    grid += '<section class="vehicleDetail">'
+    grid += "<h3> " + data.inv_make + " " + data.inv_model + " Details</h3>"
+    grid += '<ul id="vehicle-details">'
+    grid +=
+        "<li><h4>Price: $" +
+        new Intl.NumberFormat("en-US").format(data.inv_price) +
+        "</h4></li>"
+    grid += "<li><h4>Description:</h4> " + data.inv_description + "</li>"
+    grid += "<li><h4>Color:</h4> " + data.inv_color + "</li>"
+    grid +=
+        "<li><h4>Miles:</h4> " +
+        new Intl.NumberFormat("en-US").format(data.inv_miles) +
+        "</li>"
+    grid += "</ul>"
+    grid += "</section>"
+    grid += `</div>`
+    return grid
+}
 
 /* ****************************************
  * Middleware For Handling Errors

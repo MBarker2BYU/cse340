@@ -29,6 +29,23 @@ async function getInventoryByClassificationId(classification_id) {
   }
 }
 
+async function getClassificationName(classification_id) {
+  try {
+    const data = await pool.query(
+      `SELECT 
+        classification_name 
+      FROM 
+        public.classification 
+      WHERE
+        classification_id = $1`,
+      [classification_id]
+    )
+    return data.rows;
+  } catch (error) {
+    throw new Error(`Database error: ${error.message}`);
+  }
+}
+
 async function getVehicleById(vehicleId) {
   try {
     const sql = 'SELECT * FROM inventory WHERE inv_id = $1';
@@ -39,4 +56,4 @@ async function getVehicleById(vehicleId) {
   }
 }
 
-module.exports = { getClassifications, getInventoryByClassificationId, getVehicleById }
+module.exports = { getClassifications, getInventoryByClassificationId, getVehicleById, getClassificationName };

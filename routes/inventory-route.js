@@ -3,6 +3,7 @@ const express = require("express")
 const router = new express.Router() 
 const inventoryController = require("../controllers/inventory-controller")
 const utilities = require("../utilities/")
+const inventoryValuation = require("../utilities/inventory-validation")
 
 // Route to build inventory by classification view
 router.get("/type/:classificationId",  utilities.handleErrors(inventoryController.buildByClassificationId));
@@ -11,8 +12,25 @@ router.get('/detail/:inv_id', utilities.handleErrors(inventoryController.getVehi
 // Inventory error handling route
 router.get('/error', utilities.handleErrors(inventoryController.triggerError));
 
-async function triggerError(req, res, next) {
-  next(new Error('Intentional 500 Error'));  
-}
+router.get("/", utilities.handleErrors(inventoryController.buildManagementView));
 
-module.exports = {router, triggerError};
+router.get("/newClassification", utilities.handleErrors(inventoryController.newClassificationView));
+
+router.post("/addClassification", 
+  inventoryValuation.classificationRule(),
+  inventoryValuation.checkClassificationData,
+  utilities.handleErrors(inventoryController.addClassificationView));
+
+router.get("/newVehicle", utilities.handleErrors(inventoryController.newVehicleView));
+
+router.post("/addInventory", 
+  inventoryValuation.newInventoryRules(),
+  inventoryValuation.checkInventoryData,
+  utilities.handleErrors(inventoryController.addInventoryView));
+
+
+router.get("/triggerError", (req, res) => 
+  utilities.triggerError(res, "This is a test error for inventory route.")
+);
+
+module.exports = router;

@@ -17,6 +17,9 @@ const accountRoute = require("./routes/account-route")
 const utilities = require("./utilities/")
 const session = require("express-session")
 const pool = require('./database/')
+const bodyParser = require("body-parser")
+const cookieParser = require("cookie-parser")
+
 
 // Middleware
 app.use(session({
@@ -59,7 +62,7 @@ app.use(async (req, res, next) => {
  *************************/
 app.use(static)
 app.get("/", baseController.buildHome)
-app.use("/inv", inventoryRoute.router)
+app.use("/inv", inventoryRoute)
 app.use("/account", accountRoute)
 
 // app.get("/test404", (req, res) => res.status(404).render('errors/error', { title: 'Test 404', message: 'Test 404 message' }));

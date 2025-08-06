@@ -7,16 +7,30 @@ const inventoryController = {}
  *  Build inventory by classification view
  * ************************** */
 inventoryController.buildByClassificationId = async function (req, res, next) {
+
   const classification_id = req.params.classificationId
-  const data = await inventoryModel.getInventoryByClassificationId(classification_id)
-  const grid = await utilities.buildClassificationGrid(data)
+  let data = await inventoryModel.getInventoryByClassificationId(classification_id)
 
   let nav = await utilities.getNav()
 
-  const className = data && data[0] ? data[0].classification_name : 'Unknown';
+  if (!data || data.length === 0) {
+
+      data = await inventoryModel.getClassificationName(classification_id);
+
+      let className = data && data[0] ? data[0].classification_name : 'Unknown';
+
+      return res.render("./inventory/classification", {
+      title: `${className} Vehicles`,
+      nav,
+      grid: "No vehicles found for this classification.",
+    });
+  }
+
+  const grid = await utilities.buildClassificationGrid(data)
+  className = data && data[0] ? data[0].classification_name : 'Unknown';
   
   res.render("./inventory/classification", {
-    title: className + " vehicles",
+    title: `${className} Vehicles`,
     nav,
     grid,
   });
@@ -42,11 +56,105 @@ inventoryController.getVehicleDetail = async function (req, res, next) {
     });  
 };
 
+inventoryController.buildManagementView = async function (req, res, next) {
+  let nav = await utilities.getNav()
+  const classificationSelect = await utilities.buildClassificationList()
+  res.render("./inventory/management", {
+    title: "Vehicle Management",
+    nav,
+    errors: null,
+    classificationSelect,
+  })
+}
+
+inventoryController.newClassificationView = async function (req, res, next) {
+  let nav = await utilities.getNav()
+  res.render("./inventory/add-classification", {
+    title: "Add New Classification",
+    nav,
+    errors: null,
+  })
+}
+
+inventoryController.addClassification = async function (req, res, next) {
+  let nav = await utilities.getNav()
+  const { classification_name } = req.body
+  const insertResult = await invModel.addClassification(classification_name)
+
+  if (insertResult) {
+    nav = await utilities.getNav()
+    req.flash("message success", `The ${insertResult.classification_name} classification was successfully added.`)
+    res.status(201).render("inventory/management", {
+      title: "Vehicle Management",
+      nav,
+      errors: null,
+    })
+  } else {
+    req.flash("message warning", "Sorry, the insert failed.")
+    res.status(501).render("inventory/add-classification", {
+      title: "Add New Classification",
+      nav,
+      errors: null,
+    })
+  }
+}
+
+inventoryController.addInventory = async function (req, res, next) {
+  let nav = await utilities.getNav()
+  const {
+    inv_make,
+    inv_model,
+    inv_description,
+    inv_image,
+    inv_thumbnail,
+    inv_price,
+    inv_year,
+    inv_miles,
+    inv_color,
+    classification_id,
+  } = req.body
+  const insertResult = await invModel.addInventory(
+    inv_make,
+    inv_model,
+    inv_description,
+    inv_image,
+    inv_thumbnail,
+    inv_price,
+    inv_year,
+    inv_miles,
+    inv_color,
+    classification_id
+  )
+
+  if (insertResult) {
+    const itemName = insertResult.inv_make + " " + insertResult.inv_model
+    const classificationSelect = await utilities.buildClassificationList()
+    req.flash("message success", `The ${itemName} was successfully added.`)
+    res.status(201).render("./inventory/management", {
+      title: "Inventory Management",
+      nav,
+      errors: null,
+      classificationSelect,
+    })
+  } else {
+    const classificationSelect = await utilities.buildClassificationList()
+    req.flash("message warning", "Sorry, the insert failed.")
+    res.status(501).render("./inventory/add-inventory", {
+      title: "Add New Inventory",
+      nav,
+      classificationSelect: classificationSelect,
+      errors: null,
+    })
+  }
+}
+
 /* ***************************
  *  Trigger intentional error
  * ************************** */
 inventoryController.triggerError = async (req, res, next) => {
   throw new Error('Intentional 500 Error');
 };
+
+
 
 module.exports = inventoryController;
