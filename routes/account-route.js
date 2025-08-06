@@ -12,7 +12,7 @@ router.get("/registration", utilities.handleErrors(accountController.buildRegist
 
 // Route to register account management
 router.post(
-  "/register",
+  "/registration",
   accountValidate.registrationRules(),
   accountValidate.checkRegData,
   utilities.handleErrors(accountController.registerAccount)
@@ -24,6 +24,12 @@ router.post(
   accountValidate.loginRules(),
   accountValidate.checkLoginData,
   utilities.handleErrors(accountController.accountLogin)
+)
+
+router.get(
+  "/",
+  utilities.checkLogin,
+  utilities.handleErrors(accountController.buildManagement)
 )
 
 module.exports = router

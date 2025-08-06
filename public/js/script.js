@@ -1,5 +1,5 @@
 function togglePasswordVisibility() {
-  const passwordInput = document.getElementById("password");
+  const passwordInput = document.getElementById("account_password");
   const passwordToggle = document.getElementById("passwordToggle");
 
   if (passwordInput.type === "password") {

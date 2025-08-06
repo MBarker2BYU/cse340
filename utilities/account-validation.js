@@ -11,7 +11,7 @@ const BodyElement = Object.freeze ({
 });
 
 const ViewName = Object.freeze({
-    REGISTRATION: "account/register",
+    REGISTRATION: "account/registration",
     LOGIN: "account/login"
 })
 
@@ -86,17 +86,11 @@ validate.loginRules = () => {
       .normalizeEmail() // refer to validator.js docs
       .withMessage("A valid email is required."),
 
-    // password is required and must be strong password
+    // password is required
     body(BodyElement.ACCOUNT_PASSWORD)
       .trim()
-      .isStrongPassword({
-        minLength: 12,
-        minLowercase: 1,
-        minUppercase: 1,
-        minNumbers: 1,
-        minSymbols: 1,
-      })
-      .withMessage("Password does not meet requirements."),
+      .notEmpty()
+      .withMessage("Password is required."),
   ]
 }
 

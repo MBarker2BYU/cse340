@@ -15,7 +15,7 @@
 <div class="registration-wrapper">
     <div class="registration-container">
         <p>All fields are required.</p>
-        <form id="register-form" action="/account/register" method="post">
+        <form id="register-form" action="/account/registration" method="post">
             <fieldset>
             <label for="firstname">First name:</label>
             <input type="text" name="account_firstname" id="firstname" size="10" required value="<%= locals.account_firstname %>">
@@ -23,9 +23,9 @@
             <input type="text" name="account_lastname" id="lastname" required value="<%= locals.account_lastname %>">
             <label for="email">Email Address:</label>
             <input type="email" name="account_email" id="email" required value="<%= locals.account_email %>">
-            <label for="password">Password:</label>
+            <label for="account_password">Password:</label>
             <div class="password-wrapper">
-                <input type="password" id="password" name="password" placeholder="Password" required>
+                <input type="password" id="account_password" name="account_password" placeholder="Password" required value="<%= locals.account_password || '' %>">
                 <img id="passwordToggle" class="eye-icon" src="/images/show-password.png" alt="Show Password">
             </div>
             <div><i>Passwords must be minimum of 12 characters and include 1 capital letter, 1 number and 1 special character.</i></div>
