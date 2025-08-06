@@ -19,14 +19,14 @@ router.get("/newClassification", utilities.handleErrors(inventoryController.newC
 router.post("/addClassification", 
   inventoryValuation.classificationRule(),
   inventoryValuation.checkClassificationData,
-  utilities.handleErrors(inventoryController.addClassificationView));
+  utilities.handleErrors(inventoryController.addClassification));
 
-router.get("/newVehicle", utilities.handleErrors(inventoryController.newVehicleView));
+router.get("/newVehicle", utilities.handleErrors(inventoryController.newInventoryView));
 
 router.post("/addInventory", 
   inventoryValuation.newInventoryRules(),
   inventoryValuation.checkInventoryData,
-  utilities.handleErrors(inventoryController.addInventoryView));
+  utilities.handleErrors(inventoryController.addInventory));
 
 
 router.get("/triggerError", (req, res) => 

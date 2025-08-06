@@ -345,8 +345,18 @@ footer p {
 
 /* Login and Registration Form */
 
+.add-classification,
+.add-inventory {
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+
 .login-wrapper,
-.registration-wrapper {
+.registration-wrapper,
+.add-classification-wrapper,
+.add-inventory-wrapper {  
   display: flex;
   justify-content: center;
   align-items: center;
@@ -354,7 +364,9 @@ footer p {
 }
 
 .login-container,
-.registration-container {
+.registration-container,
+.add-classification-wrapper,
+.add-inventory-wrapper {
       background-color: var(--osu-light-gray);
       padding: 20px;
       border-radius: 10px;
@@ -366,14 +378,18 @@ footer p {
   }
 
   .login-container label,
-  .registration-container label {
+  .registration-container label,
+  .add-classification-wrapper label,
+  .add-inventory-wrapper label {
       display: block;
       text-align: left;
       margin-bottom: 5px;
   }
 
   .login-container input,
-  .registration-container input {
+  .registration-container input, 
+  .add-classification-wrapper input,
+  .add-inventory-wrapper input {
       width: 100%;
       padding: 10px;
       margin-bottom: 10px;
@@ -382,7 +398,9 @@ footer p {
   }
 
   .login-container button,
-  .registration-container button {
+  .registration-container button,
+  .add-classification-wrapper button,
+  .add-inventory-wrapper button {
       width: 100%;
       padding: 10px;
       background-color: var(--osu-scarlet);
@@ -391,12 +409,38 @@ footer p {
       color: white;
       font-size: 16px;
       cursor: pointer;
+      margin: 10px 0;
   }
 
   .login-container button:hover,
-  .registration-container button:hover {
-      /* background-color: var(--osu-scarlet); */
-      transform: scale(1.1);
+  .registration-container button:hover, 
+  .add-classification-wrapper button:hover,
+  .add-inventory-wrapper button:hover {
+       background-color: var(--osu-darken-scarlet);          
+  }
+
+  .add-inventory-wrapper select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: none;
+    border-radius: 5px;
+  }
+
+  .add-inventory-wrapper textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: none;
+    border-radius: 5px;
+  }
+
+  .add-classification-wrapper input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: none;
+    border-radius: 5px;
   }
 
   .login-container a {
@@ -415,15 +459,16 @@ footer p {
         display: flex;
         align-items: center;
         width: 100%;
-    }
-    .eye-icon {
-        position: absolute;
-        top: 2px;
-        right: 5px;
-        width: 32px;
-        height: 32px;
-        cursor: pointer;
-    }
+  }
+
+  .eye-icon {
+      position: absolute;
+      top: 2px;
+      right: 5px;
+      width: 32px;
+      height: 32px;
+      cursor: pointer;
+  }
 
 @media (min-width: 768px) {
 

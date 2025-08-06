@@ -13,7 +13,7 @@ router.get("/registration", utilities.handleErrors(accountController.buildRegist
 // Route to register account management
 router.post(
   "/register",
-  accountValidate.registationRules(),
+  accountValidate.registrationRules(),
   accountValidate.checkRegData,
   utilities.handleErrors(accountController.registerAccount)
 )

@@ -79,7 +79,7 @@ inventoryController.newClassificationView = async function (req, res, next) {
 inventoryController.addClassification = async function (req, res, next) {
   let nav = await utilities.getNav()
   const { classification_name } = req.body
-  const insertResult = await invModel.addClassification(classification_name)
+  const insertResult = await inventoryModel.addClassification(classification_name)
 
   if (insertResult) {
     nav = await utilities.getNav()
@@ -99,6 +99,19 @@ inventoryController.addClassification = async function (req, res, next) {
   }
 }
 
+inventoryController.newInventoryView = async function (req, res, next) {
+
+  let nav = await utilities.getNav()
+  const classificationSelect = await utilities.buildClassificationList()
+  
+  res.render("./inventory/add-inventory", {
+    title: "Add New Inventory",
+    nav,
+    classificationSelect: classificationSelect,
+    errors: null,
+  })
+}
+
 inventoryController.addInventory = async function (req, res, next) {
   let nav = await utilities.getNav()
   const {
@@ -113,7 +126,7 @@ inventoryController.addInventory = async function (req, res, next) {
     inv_color,
     classification_id,
   } = req.body
-  const insertResult = await invModel.addInventory(
+  const insertResult = await inventoryModel.addInventory(
     inv_make,
     inv_model,
     inv_description,

@@ -15,7 +15,7 @@ const ViewName = Object.freeze({
     LOGIN: "account/login"
 })
 
-validate.registationRules = () => {
+validate.registrationRules = () => {
   return [
     // name is required and must be string
     body(BodyElement.ACCOUNT_FIRSTNAME)

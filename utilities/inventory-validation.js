@@ -26,7 +26,7 @@ const ViewName = Object.freeze({
 });
 
 //export the enums for use in other files
-module.exports = { BodyElement, ViewName };
+// module.exports = { BodyElement, ViewName };
 
 validate.classificationRule = () => {
   return [

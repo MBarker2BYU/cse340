@@ -20,8 +20,11 @@ const pool = require('./database/')
 const bodyParser = require("body-parser")
 const cookieParser = require("cookie-parser")
 
-
 // Middleware
+app.use(express.urlencoded({ extended: true })); // Parse form data
+app.use(express.json()); // Parse JSON data (optional, if needed)
+app.use(cookieParser());
+
 app.use(session({
   store: new (require('connect-pg-simple')(session))({
     createTableIfMissing: true,
