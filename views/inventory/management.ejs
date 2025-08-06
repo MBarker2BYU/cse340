@@ -4,6 +4,7 @@
 
 <%- messages() %>
 
+
 <% if (errors) { %>
 <ul class="message warning">
   <% errors.array().forEach(error => { %>
@@ -12,7 +13,17 @@
 </ul>
 <% } %>
 
-<ul class="inventory-management-list">
+<ul class="boldList">
   <li><a href="/inv/newClassification/" title="Click to add a new vehicle classification">Add New Classification</a></li>
   <li><a href="/inv/newVehicle/" title="Click to add a new vehicle">Add New Vehicle</a></li>
 </ul>
+
+<h2>Manage Inventory</h2>
+<p>Choose a classification to see those inventory items.</p>
+<%- classificationSelect %>
+
+<table id="inventoryDisplay"></table>
+
+<noscript>JavaScript must be enabled to use this page.</noscript>
+
+<script src="../../js/inventory.js"></script>

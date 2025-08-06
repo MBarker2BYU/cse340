@@ -28,6 +28,11 @@ router.post("/addInventory",
   inventoryValuation.checkInventoryData,
   utilities.handleErrors(inventoryController.addInventory));
 
+router.get(
+  "/getInventory/:classification_id",
+  //utilities.checkAccountType,
+  utilities.handleErrors(inventoryController.getInventoryJSON)
+)
 
 router.get("/triggerError", (req, res) => 
   utilities.triggerError(res, "This is a test error for inventory route.")
