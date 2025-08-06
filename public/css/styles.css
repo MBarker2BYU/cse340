@@ -10,6 +10,9 @@
   /* OSU Black */
   --osu-scarlet: #BB0000;
   /* OSU Scarlet */
+  --osu-darken-scarlet: #950000;
+  /* Darkened OSU Scarlet */
+
   --osu-gray: #666666;
   /* OSU Gray */
   --osu-white: #FFFFFF;
@@ -152,7 +155,7 @@ nav {
 }
 
 .hero-content button:hover {
-    background-color: var(--osu-gray);
+    background-color: var(--osu-darken-scarlet);
 }
 
 .upgrades-section

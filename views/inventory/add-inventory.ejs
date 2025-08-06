@@ -19,37 +19,37 @@
                 <label for="classificationList">Classification</label>
                 <%- classificationSelect %>
 
-                <label for="invMake">Make</label>
-                <input type="text" id="invMake" name="invMake" value="<%= locals.invMake %>" required
+                <label for="inv_make">Make</label>
+                <input type="text" id="inv_make" name="inv_make" value="<%= locals.invMake %>" required
                     pattern="[a-zA-Z0-9\s]*" placeholder="e.g., Chevrolet, Toyota, Ford, Honda" minlength="3">
 
-                <label for="invModel">Model</label>
-                <input type="text" id="invModel" name="invModel" value="<%= locals.invModel %>"
+                <label for="inv_model">Model</label>
+                <input type="text" id="inv_model" name="inv_model" value="<%= locals.invModel %>"
                     required pattern="[a-zA-Z0-9\s]*" placeholder="e.g., Corvette, Camry, Accord, Civic" minlength="3">
 
-                <label for="invDescription">Description</label>
-                <textarea id="invDescription" name="invDescription" required placeholder="e.g., A reliable sedan with great fuel economy"><%= locals.invDescription %></textarea>
+                <label for="inv_description">Description</label>
+                <textarea id="inv_description" name="inv_description" required placeholder="e.g., A reliable sedan with great fuel economy"><%= locals.invDescription %></textarea>
 
-                <label for="invImage">Image Path</label>
-                <input type="text" id="invImage" name="invImage" size="30" required <% if(locals.invImage) { %> value="<%= locals.invImage %>" <% } else { %> value="/images/vehicles/no-image.png" <% } %>>
+                <label for="inv_image">Image Path</label>
+                <input type="text" id="inv_image" name="inv_image" size="30" required <% if(locals.invImage) { %> value="<%= locals.invImage %>" <% } else { %> value="/images/vehicles/no-image.png" <% } %>>
 
-                <label for="invThumbnail">Thumbnail Path</label>
-                <input type="text" id="invThumbnail" name="invThumbnail" size="30" required <% if(locals.invThumbnail) { %> value="<%= locals.invThumbnail %>" <% } else { %> value="/images/vehicles/no-image.png" <% } %>>
+                <label for="inv_thumbnail">Thumbnail Path</label>
+                <input type="text" id="inv_thumbnail" name="inv_thumbnail" size="30" required <% if(locals.invThumbnail) { %> value="<%= locals.invThumbnail %>" <% } else { %> value="/images/vehicles/no-image.png" <% } %>>
 
-                <label for="invPrice">Price</label>
-                <input type="number" id="invPrice" name="invPrice" value="<%= locals.invPrice %>"
+                <label for="inv_price">Price</label>
+                <input type="number" id="inv_price" name="inv_price" value="<%= locals.invPrice %>"
                     required min="0" size="10" placeholder="e.g., 30000">
 
-                <label for="invYear">Year</label>
-                <input type="number" id="invYear" name="invYear" value="<%= locals.invYear %>"
+                <label for="inv_year">Year</label>
+                <input type="number" id="inv_year" name="inv_year" value="<%= locals.invYear %>"
                     required size="10" min="1886" max="<%= new Date().getFullYear() %>" placeholder="e.g., 2023">
 
-                <label for="invMiles">Miles</label>
-                <input type="number" id="invMiles" name="invMiles" value="<%= locals.invMiles %>"
+                <label for="inv_miles">Miles</label>
+                <input type="number" id="inv_miles" name="inv_miles" value="<%= locals.invMiles %>"
                     required min="0" size="10" placeholder="e.g., 15000">
 
-                <label for="invColor">Color</label>
-                <input type="text" id="invColor" name="invColor" value="<%= locals.invColor %>"
+                <label for="inv_color">Color</label>
+                <input type="text" id="inv_color" name="inv_color" value="<%= locals.invColor %>"
                     required pattern="[a-zA-Z\s]*" placeholder="e.g., Red, Blue, Black, White">
                 
         </fieldset>
