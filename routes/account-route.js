@@ -7,6 +7,8 @@ const accountValidate = require("../utilities/account-validation")
 // Route to build login
 router.get("/login", utilities.handleErrors(accountController.buildLogin))
 
+router.get("/logout", utilities.handleErrors(accountController.accountLogout))
+
 // Route to build registration
 router.get("/registration", utilities.handleErrors(accountController.buildRegister))
 
