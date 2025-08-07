@@ -13,17 +13,21 @@
 </ul>
 <% } %>
 
-<ul class="boldList">
-  <li><a href="/inv/newClassification/" title="Click to add a new vehicle classification">Add New Classification</a></li>
-  <li><a href="/inv/newVehicle/" title="Click to add a new vehicle">Add New Vehicle</a></li>
-</ul>
+<div class="account-outer-wrapper">
+    <div class="inventory-inner-wrapper">
 
-<h2>Manage Inventory</h2>
-<p>Choose a classification to see those inventory items.</p>
-<%- classificationSelect %>
+      <button onclick="window.location.href='/inv/newClassification/'" title="Click to add a new vehicle classification">Add New Classification</button>
+      <button onclick="window.location.href='/inv/newVehicle/'" title="Click to add a new vehicle">Add New Vehicle</button>
+      
+      <h2>Manage Inventory</h2>
+      <p>Choose a classification to see those inventory items.</p>
+      <%- classificationSelect %>
 
-<table id="inventoryDisplay"></table>
+      <table id="inventoryDisplay"></table>
 
-<noscript>JavaScript must be enabled to use this page.</noscript>
+      <noscript>JavaScript must be enabled to use this page.</noscript>
+
+    </div>
+</div>
 
 <script src="../../js/inventory.js"></script>

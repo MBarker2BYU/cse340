@@ -35,25 +35,24 @@
   --button-border-radius: 5px;
 }
 
-body{      
+body {
   margin: 0;
 }
 
 #container {
   max-width: 900px;
   margin: 0;
-  padding: 0 1rem;  
+  padding: 0 1rem;
 }
 
-header
-{
+header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 1.75rem 0;
 }
 
-.siteName a{
+.siteName a {
   color: var(--osu-black);
   text-decoration: none;
   font-family: var(--heading-font);
@@ -75,8 +74,8 @@ header
   transform: scale(1.1);
 }
 
-nav {  
-  background-color: var(--osu-scarlet);  
+nav {
+  background-color: var(--osu-scarlet);
 }
 
 .nav-list li {
@@ -85,7 +84,7 @@ nav {
 
 .nav-list {
   display: flex;
-  justify-content:space-evenly;
+  justify-content: space-evenly;
   list-style: none;
   padding: 10px;
   margin: 0;
@@ -100,87 +99,84 @@ nav {
 }
 
 .nav-list a:hover {
-  transform: scale(1.2);   
+  transform: scale(1.2);
 }
 
-.hero{
+.hero {
   position: relative;
   height: 275px;
   padding: 0;
-  display: flex; 
-  justify-content: center; 
-  align-items: center; 
-  overflow: hidden; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
 }
 
 .hero img {
-  max-width: 100%; 
-  max-height: 100%; 
-  width: auto; 
-  height: auto; 
-  object-fit: contain; 
-  display: block; 
-  margin: 0 auto; 
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  display: block;
+  margin: 0 auto;
 }
 
 .hero-content {
-    position: absolute;
-    left: 15px;
-    top: 30%;
-    font-size: medium;
-    transform: translateY(-50%);
-    background-color: var(--smoked-glass);
-    padding: 10px;
-    color: var(--osu-black);
-    border-radius: var(--header-footer-border-radius);
-    box-shadow: 0 4px 8px var(--shadow-color);
+  position: absolute;
+  left: 15px;
+  top: 30%;
+  font-size: medium;
+  transform: translateY(-50%);
+  background-color: var(--smoked-glass);
+  padding: 10px;
+  color: var(--osu-black);
+  border-radius: var(--header-footer-border-radius);
+  box-shadow: 0 4px 8px var(--shadow-color);
 }
 
 .hero-content h3 {
-    margin: 0 0 10px 0;
+  margin: 0 0 10px 0;
 }
 
 .hero-content p {
-    margin: 0 0 10px 0;
+  margin: 0 0 10px 0;
 }
 
 .hero-content button {
-    background-color: var(--osu-scarlet);
-    font-weight: bold;
-    border: none;
-    padding: 10px 20px;
-    color: var(--osu-white);
-    cursor: pointer;
-    border-radius: var(--button-border-radius);
+  background-color: var(--osu-scarlet);
+  font-weight: bold;
+  border: none;
+  padding: 10px 20px;
+  color: var(--osu-white);
+  cursor: pointer;
+  border-radius: var(--button-border-radius);
 }
 
 .hero-content button:hover {
-    background-color: var(--osu-darken-scarlet);
+  background-color: var(--osu-darken-scarlet);
 }
 
-.upgrades-section
-{
-  display: grid; display: grid;
-  grid-template-columns: repeat(2, 1fr); 
-  grid-template-rows: auto auto; 
-  gap: 10px; 
-  align-items: center; 
+.upgrades-section {
+  display: grid;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: auto auto;
+  gap: 10px;
+  align-items: center;
 }
 
-.upgrades-section h3
-{
+.upgrades-section h3 {
   grid-column: 1 / -1;
 }
 
-.upgrade-item-container
-{
+.upgrade-item-container {
   display: flex;
   flex-direction: column;
-  align-items: center;    
+  align-items: center;
 }
 
-.upgrade-item
-{
+.upgrade-item {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -189,30 +185,30 @@ nav {
   padding: 1rem;
   border: var(--osu-scarlet) 1px solid;
   box-shadow: 0 4px 8px var(--shadow-color);
-  width: 100%; 
+  width: 100%;
   max-height: 100px;
-  overflow: hidden; 
+  overflow: hidden;
 }
 
 .upgrade-item img {
-  max-width: 65px; 
-  max-height: 65px; 
-  margin-bottom: 10px; 
+  max-width: 65px;
+  max-height: 65px;
+  margin-bottom: 10px;
 }
 
 .upgrade-item-container a {
   padding-top: 5px;
-  text-align: center;  
+  text-align: center;
 }
 
 .upgrades-reviews {
   display: flex;
-  flex-direction: column-reverse; 
-  gap: 5px; 
+  flex-direction: column-reverse;
+  gap: 5px;
   margin-top: 5px;
 }
 
-.review-item{
+.review-item {
   font-size: large;
 }
 
@@ -229,7 +225,8 @@ footer p {
 /* Inventory Grid and Cards */
 .inventory-grid {
   display: grid;
-  grid-template-columns: 1fr; /* Single column by default (mobile) */
+  grid-template-columns: 1fr;
+  /* Single column by default (mobile) */
   gap: 20px;
   padding: 20px;
   max-width: 1200px;
@@ -245,7 +242,7 @@ footer p {
   max-width: 350px;
   width: 100%;
   text-align: center;
-  height: 300px;  
+  height: 300px;
   box-shadow: 6px 6px 6px var(--shadow-color);
 }
 
@@ -254,9 +251,9 @@ footer p {
 }
 
 .card-image-container {
-  flex-shrink: 0; 
+  flex-shrink: 0;
   height: 200px;
-  border-bottom: var(--osu-scarlet) 3px solid;   
+  border-bottom: var(--osu-scarlet) 3px solid;
 }
 
 .card-image {
@@ -264,14 +261,14 @@ footer p {
   height: auto;
   display: block;
   padding: 10px;
-  margin: 0 auto;  
+  margin: 0 auto;
 }
 
 .card-content {
   margin-top: auto;
   padding: 10px;
   text-align: center;
-  border-top: var(--shadow-color) 2px solid;  
+  border-top: var(--shadow-color) 2px solid;
 }
 
 .card-content h2 {
@@ -310,10 +307,10 @@ footer p {
   display: block;
 }
 
-.vehicle-content > div:first-child {
+.vehicle-content>div:first-child {
   display: flex;
   justify-content: center;
-  align-items: center;  
+  align-items: center;
   margin: 0 auto 10px;
 }
 
@@ -348,134 +345,147 @@ footer p {
 
 /* Login and Registration Form */
 
-.add-classification,
-.add-inventory {
-  width: 100%;
-  max-width: 400px;
-  margin: 0 auto;
-}
-
-
-.login-wrapper,
-.registration-wrapper,
-.add-classification-wrapper,
-.add-inventory-wrapper {  
+.account-outer-wrapper,
+.inventory-outer-wrapper {
   display: flex;
   justify-content: center;
   align-items: center;
   background-color: var(--osu-white);
 }
 
-.login-container,
-.registration-container,
-.add-classification-wrapper,
-.add-inventory-wrapper {
-      background-color: var(--osu-light-gray);
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 3px 3px 4px var(--shadow-color);
-      width: 100%;
-      max-width: 400px;
-      text-align: center;
-      color: var(--osu-black);
-  }
+.account-inner-wrapper,
+.inventory-inner-wrapper {
+  background-color: var(--osu-light-gray);
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 3px 3px 4px var(--shadow-color);
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+  color: var(--osu-black);
+}
 
-  .login-container label,
-  .registration-container label,
-  .add-classification-wrapper label,
-  .add-inventory-wrapper label {
-      display: block;
-      text-align: left;
-      margin-bottom: 5px;
-  }
+.account-inner-wrapper label,
+.inventory-inner-wrapper label {
+  display: block;
+  text-align: left;
+  margin-bottom: 5px;
+}
 
-  .login-container input,
-  .registration-container input, 
-  .add-classification-wrapper input,
-  .add-inventory-wrapper input {
-      width: 100%;
-      padding: 10px;
-      margin-bottom: 10px;
-      border: none;
-      border-radius: 5px;
-  }
+.account-inner-wrapper input,
+.inventory-inner-wrapper input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: none;
+  border-radius: 5px;
+}
 
-  .login-container button,
-  .registration-container button,
-  .add-classification-wrapper button,
-  .add-inventory-wrapper button {
-      width: 100%;
-      padding: 10px;
-      background-color: var(--osu-scarlet);
-      border: none;
-      border-radius: 5px;
-      color: white;
-      font-size: 16px;
-      cursor: pointer;
-      margin: 10px 0;
-  }
+.account-inner-wrapper button,
+.inventory-inner-wrapper button {
+  width: 100%;
+  padding: 10px;
+  background-color: var(--osu-scarlet);
+  border: none;
+  border-radius: 5px;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  margin: 10px 0;
+}
 
-  .login-container button:hover,
-  .registration-container button:hover, 
-  .add-classification-wrapper button:hover,
-  .add-inventory-wrapper button:hover {
-       background-color: var(--osu-darken-scarlet);          
-  }
+.account-inner-wrapper button:hover,
+.inventory-inner-wrapper button:hover {
+  background-color: var(--osu-darken-scarlet);
+}
 
-  .add-inventory-wrapper select {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 10px;
-    border: none;
-    border-radius: 5px;
-  }
+.account-inner-wrapper select,
+.inventory-inner-wrapper select {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: none;
+  border-radius: 5px;
+}
 
-  .add-inventory-wrapper textarea {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 10px;
-    border: none;
-    border-radius: 5px;
-  }
+.account-inner-wrapper textarea,
+.inventory-inner-wrapper textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: none;
+  border-radius: 5px;
+  resize: vertical;
+  /* Allow vertical resizing */
+  min-height: 100px;
+  /* Minimum height for the textarea */
+}
 
-  .add-classification-wrapper input[type="text"] {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 10px;
-    border: none;
-    border-radius: 5px;
-  }
+.account-inner-wrapper input[type="text"],
+.inventory-inner-wrapper input[type="text"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: none;
+  border-radius: 5px;
+}
 
-  .login-container a {
-      display: block;
-      margin-top: 10px;
-      color: var(--osu-dark-gray);
-      text-decoration: none;
-  }
+.account-inner-wrapper a,
+.inventory-inner-wrapper a {
+  display: block;
+  margin-top: 10px;
+  color: var(--osu-dark-gray);
+  text-decoration: none;
+}
 
-  .login-container a:hover {
-      text-decoration: underline;
-  }
+.account-inner-wrapper a:hover,
+.inventory-inner-wrapper a:hover {
+  text-decoration: underline;
+}
 
-  .password-wrapper {
-        position: relative;
-        display: flex;
-        align-items: center;
-        width: 100%;
-  }
+.password-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
 
-  .eye-icon {
-      position: absolute;
-      top: 2px;
-      right: 5px;
-      width: 32px;
-      height: 32px;
-      cursor: pointer;
-  }
+.eye-icon {
+  position: absolute;
+  top: 2px;
+  right: 5px;
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+}
+
+#inventoryDisplay {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: var(--osu-white);
+}
+
+#inventoryDisplay th,
+#inventoryDisplay td {
+  padding: 10px;
+  text-align: left;
+  align-content: center;
+}
+
+#inventoryDisplay td a {
+  display: inline-block; /* Changed from block to inline-block to fit within td */
+  margin: 0;
+  color: var(--osu-dark-gray);
+  text-decoration: none;
+}
+
+#inventoryDisplay td a:hover {
+  transform: scale(1.1);
+}
 
 @media (min-width: 768px) {
 
-  body{
+  body {
     background-image: url('/images/site/small_check-v2.webp');
     background-repeat: repeat;
     border: var(--osu-scarlet) 2px solid;
@@ -485,38 +495,38 @@ footer p {
 
   #container {
     background-color: var(--osu-white);
-    width: 90%;    
-    margin: 1rem auto;    
+    width: 90%;
+    margin: 1rem auto;
     padding: 1rem;
     border: var(--osu-scarlet) 3px solid;
     border-radius: var(--border-radius);
-  } 
-  
+  }
+
   .hero {
-      height: 400px; 
-      padding: 10px; 
+    height: 400px;
+    padding: 10px;
   }
 
   .hero-image {
-      max-width: 100%; 
-      object-fit: cover; 
+    max-width: 100%;
+    object-fit: cover;
   }
 
   .hero-content {
-      font-size: x-large;
-      left: 30px; 
-      padding: 15px; 
+    font-size: x-large;
+    left: 30px;
+    padding: 15px;
   }
 
   .hero-content button {
-      font-size:large;        
-      padding: 15px 30px; 
+    font-size: large;
+    padding: 15px 30px;
   }
-  
+
   .upgrades-reviews {
-    flex-direction: row; 
+    flex-direction: row;
     flex-wrap: nowrap;
-    gap: 40px; 
+    gap: 40px;
   }
 
   .upgrades-section {
@@ -529,25 +539,26 @@ footer p {
   }
 
   .inventory-grid {
-    grid-template-columns: repeat(auto-fit, minmax(0, 260px)); /* Auto-fit up to 3 cards */
-    max-width: 900px; /* Approx 3 x 280px + gaps, adjustable */
+    grid-template-columns: repeat(auto-fit, minmax(0, 260px));
+    /* Auto-fit up to 3 cards */
+    max-width: 900px;
+    /* Approx 3 x 280px + gaps, adjustable */
   }
 
   .vehicle-content {
     display: flex;
   }
 
-  .vehicle-title {    
+  .vehicle-title {
     text-align: left;
   }
 
-  .vehicle-content > div:first-child {
+  .vehicle-content>div:first-child {
     margin: 0 10px 0 0;
   }
-  
+
   .vehicle-info {
     text-align: left;
     padding-left: 10px;
   }
-
 }

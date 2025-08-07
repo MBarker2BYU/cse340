@@ -1,0 +1,62 @@
+<% if (title) {%>
+<h1><%= title %></h1>
+<%} else {res.redirect('/')} %>
+
+<%- messages() %>
+
+<% if (errors) { %>
+<ul class="message warning">
+  <% errors.array().forEach(error => { %>
+  <li><%= error.msg %></li>
+  <%  }) %>
+</ul>
+<% } %>
+
+
+<div class="account-outer-wrapper">
+    <div class="inventory-inner-wrapper">
+    <form class="edit-inventory" action="/inv/update" method="POST">
+        <fieldset>
+                <label for="classificationList">Classification</label>
+                <%- classificationSelect %>
+
+                <label for="inv_make">Make</label>
+                <input type="text" id="inv_make" name="inv_make" value="<%= locals.inv_make %>" required
+                    pattern="[a-zA-Z0-9\s]*" placeholder="e.g., Chevrolet, Toyota, Ford, Honda" minlength="3">
+
+                <label for="inv_model">Model</label>
+                <input type="text" id="inv_model" name="inv_model" value="<%= locals.inv_model %>"
+                    required pattern="[a-zA-Z0-9\s]*" placeholder="e.g., Corvette, Camry, Accord, Civic" minlength="3">
+
+                <label for="inv_description">Description</label>
+                <textarea id="inv_description" name="inv_description" required placeholder="e.g., A reliable sedan with great fuel economy"><%= locals.inv_description %></textarea>
+
+                <label for="inv_image">Image Path</label>
+                <input type="text" id="inv_image" name="inv_image" size="30" required <% if(locals.inv_image) { %> value="<%= locals.inv_image %>" <% } else { %> value="/images/vehicles/no-image.png" <% } %>>
+
+                <label for="inv_thumbnail">Thumbnail Path</label>
+                <input type="text" id="inv_thumbnail" name="inv_thumbnail" size="30" required <% if(locals.inv_thumbnail) { %> value="<%= locals.inv_thumbnail %>" <% } else { %> value="/images/vehicles/no-image.png" <% } %>>
+
+                <label for="inv_price">Price</label>
+                <input type="number" id="inv_price" name="inv_price" value="<%= locals.inv_price %>"
+                    required min="0" size="10" placeholder="e.g., 30000">
+
+                <label for="inv_year">Year</label>
+                <input type="number" id="inv_year" name="inv_year" value="<%= locals.inv_year %>"
+                    required size="10" min="1886" max="<%= new Date().getFullYear() %>" placeholder="e.g., 2023">
+
+                <label for="inv_miles">Miles</label>
+                <input type="number" id="inv_miles" name="inv_miles" value="<%= locals.inv_miles %>"
+                    required min="0" size="10" placeholder="e.g., 15000">
+
+                <label for="inv_color">Color</label>
+                <input type="text" id="inv_color" name="inv_color" value="<%= locals.inv_color %>"
+                    required pattern="[a-zA-Z\s]*" placeholder="e.g., Red, Blue, Black, White">
+                
+                <input type="hidden" name="inv_id" <% if(locals.inv_id) { %> value="<%= locals.inv_id %>" <% } %>>
+
+        </fieldset>
+        <button type="submit">Update Vehicle</button>
+    </form>
+</div>
+</div>
