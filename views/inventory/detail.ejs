@@ -10,6 +10,11 @@
       <p><span>Description:</span> <%= vehicle.inv_description %></p>
       <p><span>Color:</span> <%= vehicle.inv_color %></p>
       <p><span>Miles:</span> <%= vehicle.inv_miles.toLocaleString('en-US') %></p>
-    </div>
+      <% if (locals.accountData) { %>
+        <div class="price-watch">
+          <a href="/price-watch/create/<%= vehicle.inv_id %>" class="btn btn-primary">Set Price Watch</a>
+        </div>
+      <% } %>
+    </div>    
   </div>
 </div>

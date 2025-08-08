@@ -1,0 +1,19 @@
+<div class="container">
+  <h1><%= title %></h1>
+  <%- messages() %>
+  <% if (errors) { %>
+    <ul class="message warning">
+      <% errors.forEach(error => { %>
+        <li><%= error.msg %></li>
+      <% }) %>
+    </ul>
+  <% } %>
+  <form action="/price-watch/create" method="POST">
+    <input type="hidden" name="inv_id" value="<%= vehicle.inv_id %>">
+    <div class="form-group">
+      <label for="inv_price">Target Price ($)</label>
+      <input type="number" name="inv_price" id="inv_price" min="1" max="999999999" step="1" class="form-control" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Set Price Watch</button>
+  </form>
+</div>

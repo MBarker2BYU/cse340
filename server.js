@@ -14,6 +14,7 @@ const static = require("./routes/static")
 const baseController = require("./controllers/baseController")
 const inventoryRoute = require("./routes/inventory-route")
 const accountRoute = require("./routes/account-route")
+const priceWatchRoute = require("./routes/price-watch-route");
 const utilities = require("./utilities/")
 const session = require("express-session")
 const pool = require('./database/')
@@ -69,6 +70,7 @@ app.use(static)
 app.get("/", baseController.buildHome)
 app.use("/inv", inventoryRoute)
 app.use("/account", accountRoute)
+app.use("/price-watch", priceWatchRoute);
 
 // app.get("/test404", (req, res) => res.status(404).render('errors/error', { title: 'Test 404', message: 'Test 404 message' }));
 

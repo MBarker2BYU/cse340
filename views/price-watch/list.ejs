@@ -1,0 +1,41 @@
+<div class="container">
+  <h1><%= title %></h1>
+  <%- messages() %>
+  <% if (errors) { %>
+    <ul class="message warning">
+      <% errors.forEach(error => { %>
+        <li><%= error.msg %></li>
+      <% }) %>
+    </ul>
+  <% } %>
+  <% if (priceWatches.length > 0) { %>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Vehicle</th>
+          <th>Current Price</th>
+          <th>Target Price</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% priceWatches.forEach(watch => { %>
+          <tr>
+            <td><%= watch.inv_year %> <%= watch.inv_make %> <%= watch.inv_model %></td>
+            <td>$<%= new Intl.NumberFormat('en-US').format(watch.current_price) %></td>
+            <td>$<%= new Intl.NumberFormat('en-US').format(watch.target_price) %></td>
+            <td>
+              <form action="/price-watch/delete" method="POST" style="display:inline;">
+                <input type="hidden" name="watch_id" value="<%= watch.watch_id %>">
+                <button type="submit" class="btn btn-danger btn-sm">Remove</button>
+              </form>
+            </td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  <% } else { %>
+    <p>No price watches set.</p>
+  <% } %>
+  <a href="/account/" class="btn btn-secondary">Back to Account</a>
+</div>
