@@ -1,0 +1,72 @@
+<% if (title) { %>
+  <h1>
+    <%= title %>
+  </h1>
+<% } else { res.redirect('/') } %>
+
+<%- messages() %>
+
+<% if (errors) { %>
+<ul class="message warning">
+<% errors.array().forEach(error=> { %>
+  <li>
+    <%= error.msg %>
+  </li>
+  <% }) %>
+</ul>
+<% } %>
+
+<div class="account-outer-wrapper">
+  <div class="account-inner-wrapper">    
+    <form action="/account/update" method="POST">
+      <fieldset>
+        <legend>Update Profile</legend>
+        <input type="hidden" name="account_id" <% if(locals.account_id) { %> value="<%= locals.account_id %>" <% } %>>
+
+        <label for="account_firstname">First Name</label>
+        <input type="text" id="account_firstname" name="account_firstname" required
+          value="<%= accountData.account_firstname %>">
+
+        <label for="account_lastname">Last Name</label>
+        <input type="text" id="account_lastname" name="account_lastname" required
+          value="<%= accountData.account_lastname %>">
+
+        <label for="account_email">Email</label>
+        <input type="email" id="account_email" name="account_email" required
+          value="<%= accountData.account_email %>">
+
+        <button type="submit">Update Profile</button>
+      </fieldset>
+    </form>
+
+    <div class="spacer"></div>
+
+    <form action="/account/password" method="POST">
+      <fieldset>
+        <legend>Change Password</legend>
+        <input type="hidden" name="account_id" <% if(locals.account_id) { %> value="<%= locals.account_id %>" <% } %>>
+
+        <label for="account_password">New Password</label>
+        <div class="password-wrapper">
+          <input type="password" id="account_password" name="account_password" placeholder="New Password"
+            required pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$">
+          <img id="passwordToggle" class="eye-icon" src="/images/show-password.png" alt="Show Password">
+        </div>
+
+        <div class="password-requirements">
+          <p>Password Requirements:</p>
+          <ul>
+            <li>Must be at least 12 characters long.</li>
+            <li>Must include at least 1 capital letter.</li>
+            <li>Must include at least 1 number.</li>
+            <li>Must include at least 1 special character.</li>
+          </ul>
+        </div>
+
+        <button type="submit">Change Password</button>
+      </fieldset>
+
+    </form>
+  </div>
+</div>
+<script src="/js/script.js"></script>

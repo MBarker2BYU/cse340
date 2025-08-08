@@ -8,6 +8,7 @@ const BodyElement = Object.freeze ({
     ACCOUNT_LASTNAME: "account_lastname",
     ACCOUNT_EMAIL: "account_email",
     ACCOUNT_PASSWORD: "account_password",
+    ACCOUNT_ID: "account_id",
 });
 
 const ViewName = Object.freeze({
@@ -110,4 +111,82 @@ validate.checkLoginData = async (req, res, next) => {
   }
   next()
 }
-module.exports = validate
+
+validate.updateProfileRules = () => {
+  return [
+    // name is required and must be string
+    body(BodyElement.ACCOUNT_FIRSTNAME)
+      .trim()
+      .isString()
+      .isLength({ min: 1 })
+      .withMessage("Please provide a first name."),
+
+    // name is required and must be string
+    body(BodyElement.ACCOUNT_LASTNAME)
+      .trim()
+      .isString()
+      .isLength({ min: 1 })
+      .withMessage("Please provide a last name."),
+
+    // valid email is required
+    body(BodyElement.ACCOUNT_EMAIL)
+      .trim()
+      .isEmail()
+      .normalizeEmail() // refer to validator.js docs
+      .withMessage("A valid email is required."),
+  ]
+}
+
+validate.checkUpdateProfileData = async (req, res, next) => {
+  const { account_firstname, account_lastname, account_email, account_id } = req.body;
+  let errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    let nav = await utilities.getNav();
+    res.render("account/profile-editor", {
+      errors,
+      title: "Profile Editor",
+      nav,
+      accountData: { account_firstname, account_lastname, account_email },
+      account_id,
+    });
+    return;
+  }
+  next();
+};
+
+validate.changePasswordRules = () => {
+  return [
+    
+    // new password is required and must be strong password
+    body(BodyElement.ACCOUNT_PASSWORD)
+      .trim()
+      .isStrongPassword({
+        minLength: 12,
+        minLowercase: 1,
+        minUppercase: 1,
+        minNumbers: 1,
+        minSymbols: 1,
+      })
+      .withMessage("New password does not meet requirements."),
+  ]
+}
+
+validate.checkChangePasswordData = async (req, res, next) => {
+  const { account_password, account_id } = req.body;
+  let errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    let nav = await utilities.getNav();
+    res.render("account/profile-editor", {
+      errors,
+      title: "Profile Editor",
+      nav,
+      accountData: {}, // Empty for password form
+      account_password,
+      account_id,
+    });
+    return;
+  }
+  next();
+};
+
+module.exports = { validate, BodyElement, ViewName }

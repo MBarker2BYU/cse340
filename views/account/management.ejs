@@ -16,7 +16,7 @@
 <h3>Account Type: <%= accountData.account_type  %></h3>
 
 <p>You're logged in.</p>
-<a href="/account/update/<%= accountData.account_id %>" title="Click to update your account information">Edit Account Information</a>
+<a href="/account/profile/<%= accountData.account_id %>" title="Click to update your account information">Edit Account Information</a>
 
 <% if(accountData.account_type != 'Client'){ %>
    <h3>Inventory Management</h3>

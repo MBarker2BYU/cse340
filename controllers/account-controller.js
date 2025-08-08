@@ -1,5 +1,6 @@
 const utilities = require('../utilities')
 const accountModel = require('../models/account-model')
+const { BodyElement } = require('../utilities/account-validation')
 const jwt = require("jsonwebtoken")
 const bcrypt = require('bcrypt')
 const e = require('connect-flash')
@@ -148,4 +149,82 @@ async function accountLogout(req, res) {
 }
 
 
-module.exports = { buildLogin, buildRegister, registerAccount, accountLogin, buildManagement, accountLogout}
+async function buildProfileManagement(req, res) {
+  let nav = await utilities.getNav();
+  const account_id = req.params.account_id; // From /account/profile/:account_id
+  const accountData = await accountModel.getAccountById(account_id);
+  if (!accountData) {
+    req.flash("notice", "No account found with that ID.");
+    return res.redirect("/account/");
+  }
+  res.render("account/profile-editor", {
+    title: "Profile Management",
+    nav,
+    errors: null,
+    accountData, // Pass as object
+    account_id,
+  });
+}
+
+async function updateProfile(req, res) {
+  let nav = await utilities.getNav();
+  const { account_firstname, account_lastname, account_email, account_id } = req.body;
+  try {
+    const updatedAccount = await accountModel.getAccountById(account_id);
+    if (!updatedAccount) {
+      req.flash("notice", "No account found with that ID.");
+      return res.redirect("/account/");
+    }
+    updatedAccount.account_firstname = account_firstname;
+    updatedAccount.account_lastname = account_lastname;
+    updatedAccount.account_email = account_email;
+
+    const results = await accountModel.updateProfile(
+      updatedAccount.account_id,
+      updatedAccount.account_firstname,
+      updatedAccount.account_lastname,
+      updatedAccount.account_email
+    );
+
+    if (!results) {
+      req.flash("notice", "Error updating profile. Please try again.");
+      return res.redirect(`/account/profile/${account_id}`);
+    }
+
+    req.flash("notice", "Profile updated successfully.");
+    return res.redirect("/account/");
+
+  } catch (error) {
+    req.flash("notice", "Error updating profile. Please try again.");
+    res.redirect(`/account/profile/${account_id}`);
+  }
+}
+
+async function changePassword(req, res) {
+  let nav = await utilities.getNav();
+  const { account_password, account_id } = req.body;
+  try {
+    const updatedAccount = await accountModel.getAccountById(account_id);
+    if (!updatedAccount) {
+      req.flash("notice", "No account found with that ID.");
+      return res.redirect("/account/");
+    }
+    updatedAccount.account_password = await bcrypt.hashSync(account_password, 10);
+
+    const results = await accountModel.updateAccountPassword(updatedAccount.account_id, updatedAccount.account_password);
+    
+    if (!results) {
+      req.flash("notice", "Error updating password. Please try again.");
+      return res.redirect(`/account/profile/${account_id}`);
+    }
+    
+    req.flash("notice", "Password updated successfully.");
+    return res.redirect("/account/");
+
+  } catch (error) {
+    req.flash("notice", "Error changing password. Please try again.");
+    res.redirect(`/account/profile/${account_id}`);
+  }
+}
+
+module.exports = { buildLogin, buildRegister, registerAccount, accountLogin, buildManagement, accountLogout, buildProfileManagement, updateProfile, changePassword }

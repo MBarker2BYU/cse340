@@ -13,7 +13,7 @@
 <% } %>
 
 <div class="account-outer-wrapper">
-    <div class="inventory-inner-wrapper">
+    <div class="account-inner-wrapper">
         <p>All fields are required.</p>
         <form id="register-form" action="/account/registration" method="post">
             <fieldset>
@@ -25,10 +25,18 @@
             <input type="email" name="account_email" id="email" required value="<%= locals.account_email %>">
             <label for="account_password">Password:</label>
             <div class="password-wrapper">
-                <input type="password" id="account_password" name="account_password" placeholder="Password" required value="<%= locals.account_password || '' %>">
+                <input type="password" id="account_password" name="account_password" placeholder="Password" required pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$" value="<%= locals.account_password || '' %>">
                 <img id="passwordToggle" class="eye-icon" src="/images/show-password.png" alt="Show Password">
             </div>
-            <div><i>Passwords must be minimum of 12 characters and include 1 capital letter, 1 number and 1 special character.</i></div>
+            <div class="password-requirements">
+                <p>Password Requirements:</p>
+                <ul>
+                    <li>Must be at least 12 characters long.</li>
+                    <li>Must include at least 1 capital letter.</li>
+                    <li>Must include at least 1 number.</li>
+                    <li>Must include at least 1 special character.</li>
+                </ul>
+            </div>
             <button type="submit">Register</button>
             </fieldset>
         </form>

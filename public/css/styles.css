@@ -345,6 +345,20 @@ footer p {
 
 /* Login and Registration Form */
 
+.password-requirements {
+  text-align: left;  
+}
+
+.account-inner-wrapper legend{
+  font-weight: bold;
+  margin-bottom: 5px;
+  text-align: left;
+}
+
+.spacer {
+  height: 20px;
+}
+
 .account-outer-wrapper,
 .inventory-outer-wrapper {
   display: flex;
