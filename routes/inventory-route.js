@@ -12,37 +12,43 @@ router.get('/detail/:inv_id', utilities.handleErrors(inventoryController.getVehi
 // Inventory error handling route
 router.get('/error', utilities.handleErrors(inventoryController.triggerError));
 
-router.get("/", utilities.handleErrors(inventoryController.buildManagementView));
+router.get("/", 
+  utilities.checkAccountType,
+  utilities.handleErrors(inventoryController.buildManagementView));
 
-router.get("/newClassification", utilities.handleErrors(inventoryController.newClassificationView));
+router.get("/newClassification", 
+  utilities.checkAccountType,
+  utilities.handleErrors(inventoryController.newClassificationView));
 
-router.post("/addClassification", 
+router.post("/addClassification",
+  utilities.checkAccountType, 
   inventoryValidation.classificationRule(),
   inventoryValidation.checkClassificationData,
   utilities.handleErrors(inventoryController.addClassification));
 
 router.get("/newVehicle", utilities.handleErrors(inventoryController.newInventoryView));
 
-router.post("/addInventory", 
+router.post("/addInventory",
+  utilities.checkAccountType,
   inventoryValidation.newInventoryRules(),
   inventoryValidation.checkInventoryData,
   utilities.handleErrors(inventoryController.addInventory));
 
 router.get(
   "/getInventory/:classification_id",
-  utilities.checkLogin,
+  utilities.checkAccountType,
   utilities.handleErrors(inventoryController.getInventoryJSON)
 )
 
 router.get(
   "/edit/:inv_id",
-  utilities.checkLogin,
+  utilities.checkAccountType,
   utilities.handleErrors(inventoryController.editInvItemView)
 )
 
 router.post(
   "/update",
-  utilities.checkLogin,
+  utilities.checkAccountType,
   inventoryValidation.newInventoryRules(),
   inventoryValidation.checkUpdateData,
   utilities.handleErrors(inventoryController.updateInventory)
@@ -50,12 +56,12 @@ router.post(
 
 router.get(
   "/delete/:inv_id",
-  utilities.checkLogin,
+  utilities.checkAccountType,
   utilities.handleErrors(inventoryController.deleteView)
 )
 
 router.post("/delete", 
-utilities.checkLogin, 
+utilities.checkAccountType, 
 utilities.handleErrors(inventoryController.deleteItem)
 )
 
