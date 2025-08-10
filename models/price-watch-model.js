@@ -61,10 +61,10 @@ async function checkPriceWatchesOnManagement(account_id) {
     return result.rows.map((row) => ({
       type: "message success",
       text: row.inv_year && row.inv_make && row.inv_model && row.current_price && row.target_price
-        ? `Price drop! ${row.inv_year} ${row.inv_make} ${row.inv_model} is now $${parseInt(row.current_price)}, meeting your watch price of $${parseInt(row.target_price)}.`
+        ? `Price drop! ${row.inv_year} ${row.inv_make} ${row.inv_model} is now ${parseInt(row.current_price).toLocaleString('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 0, maximumFractionDigits: 0 })}, meeting your watch price of ${parseInt(row.target_price).toLocaleString('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 0, maximumFractionDigits: 0 })}.`
         : "Price drop detected for an unknown vehicle.",
       carId: row.inv_id || null,
-    })).filter(msg => msg.text !== "Price drop detected for an unknown vehicle."); // Filter out invalid rows
+    })).filter(msg => msg.text !== "Price drop detected for an unknown vehicle.");
 
   } catch (error) {
     console.error("Price watch check error:", error.stack);
