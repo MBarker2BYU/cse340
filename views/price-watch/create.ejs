@@ -8,12 +8,16 @@
       <% }) %>
     </ul>
   <% } %>
-  <form action="/price-watch/create" method="POST">
-    <input type="hidden" name="inv_id" value="<%= vehicle.inv_id %>">
-    <div class="form-group">
-      <label for="inv_price">Target Price ($)</label>
-      <input type="number" name="inv_price" id="inv_price" min="1" max="999999999" step="1" class="form-control" required>
+  <div class="account-outer-wrapper">
+    <div class="account-inner-wrapper">
+      <form action="/price-watch/create" method="POST">
+        <input type="hidden" name="inv_id" value="<%= vehicle.inv_id %>">
+        <div class="form-group">
+          <label for="inv_price">Target Price ($)</label>
+          <input type="number" name="inv_price" id="inv_price" min="1" max="999999999" step="1" size="10" placeholder="e.g., 30000" required>
+        </div>
+        <button type="submit">Set Price Watch</button>
+      </form>
     </div>
-    <button type="submit" class="btn btn-primary">Set Price Watch</button>
-  </form>
+  </div>
 </div>

@@ -66,31 +66,4 @@ async function updateAccountPassword(account_id, account_password) {
   }
 }
 
-async function checkPriceWatchesOnManagement(account_id) {
-  try {
-    const sql =
-      "SELECT pw.watch_id, pw.inv_price AS target_price, i.inv_id, i.inv_price AS current_price, i.inv_year, i.inv_make, i.inv_model " +
-      "FROM public.PriceWatches pw " +
-      "JOIN public.inventory i ON pw.inv_id = i.inv_id " +
-      "WHERE pw.account_id = $1 AND i.inv_price <= pw.inv_price";
-    const result = await pool.query(sql, [account_id]);
-
-    if (result.rowCount === 0) {
-      return [];
-    }    
-
-    return result.rows.map((row) => ({
-      type: "message success",
-      text: row.inv_year && row.inv_make && row.inv_model && row.current_price && row.target_price
-        ? `Price drop! ${row.inv_year} ${row.inv_make} ${row.inv_model} is now $${parseInt(row.current_price)}, meeting your watch price of $${parseInt(row.target_price)}.`
-        : "Price drop detected for an unknown vehicle.",
-      carId: row.inv_id || null,
-    })).filter(msg => msg.text !== "Price drop detected for an unknown vehicle."); // Filter out invalid rows
-
-  } catch (error) {
-    console.error("Price watch check error:", error.stack);
-    throw new Error("Price watch check failed");
-  }
-}
-
-module.exports = { registerAccount, checkExistingEmail, getAccountByEmail, getAccountById, updateProfile, updateAccountPassword, checkPriceWatchesOnManagement }
+module.exports = { registerAccount, checkExistingEmail, getAccountByEmail, getAccountById, updateProfile, updateAccountPassword }

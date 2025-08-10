@@ -1,9 +1,9 @@
 require("dotenv").config({ path: "../.env" });
-const accountModel = require("../models/account-model");
+const priceWatchModel = require("../models/price-watch-model");
 
 async function test() {
   try {
-    const flashes = await accountModel.checkPriceWatchesOnManagement(1);
+    const flashes = await priceWatchModel.checkPriceWatchesOnManagement(1);
     console.log("Flash messages:", flashes);
   } catch (error) {
     console.error("Test error:", error.stack);

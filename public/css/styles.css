@@ -497,6 +497,52 @@ footer p {
   transform: scale(1.1);
 }
 
+/* Price Watch */
+
+.price-watch-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: var(--osu-white);
+  margin-bottom: 20px;  
+}
+
+.price-watch-table th,
+.price-watch-table td {
+  padding: 10px;
+  text-align: left;
+  align-content: center;
+}
+
+.price-watch-table td a {
+  display: inline-block; /* Changed from block to inline-block to fit within td */  
+  margin: 0;  
+  color: green;
+  text-decoration: none;
+  border: #BB0000 1px solid;
+}
+
+.price-watch-table td a:hover {
+  transform: scale(1.1);
+}
+
+.price-watch-add,
+.price-watch-back,
+.price-watch-remove {
+  background-color: var(--osu-scarlet);
+  border: none;
+  border-radius: 5px;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  padding: 5px 10px;
+}
+
+.price-watch-add:hover,
+.price-watch-back:hover,
+.price-watch-remove:hover {
+  background-color: var(--osu-darken-scarlet);
+}
+
 @media (min-width: 768px) {
 
   body {

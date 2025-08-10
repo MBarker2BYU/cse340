@@ -6,15 +6,11 @@
     </div>
     <div class="vehicle-info">
       <p class="vehicle-detail-title"><%= vehicle.inv_make %> <%= vehicle.inv_model %> Details</p>
-      <p><span>Price:</span> $<%= new Intl.NumberFormat('en-US').format(vehicle.inv_price) %></p>
+      <p><span>Price:</span> $<%= new Intl.NumberFormat('en-US').format(vehicle.inv_price) %> 
+        <button class="price-watch-add" onclick="location.href='/price-watch/create/<%= vehicle.inv_id %>'">Set Price Watch</button></p>
       <p><span>Description:</span> <%= vehicle.inv_description %></p>
       <p><span>Color:</span> <%= vehicle.inv_color %></p>
-      <p><span>Miles:</span> <%= vehicle.inv_miles.toLocaleString('en-US') %></p>
-      <% if (locals.accountData) { %>
-        <div class="price-watch">
-          <a href="/price-watch/create/<%= vehicle.inv_id %>" class="btn btn-primary">Set Price Watch</a>
-        </div>
-      <% } %>
+      <p><span>Miles:</span> <%= vehicle.inv_miles.toLocaleString('en-US') %></p>      
     </div>    
   </div>
 </div>

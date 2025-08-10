@@ -13,14 +13,15 @@
 <% } %>
 
 <h2>Welcome <%= accountData.account_firstname %> <%= accountData.account_lastname %></h2>
+<p>You're logged in.</p>
 <h3>Account Type: <%= accountData.account_type  %></h3>
 
-<a href="/price-watch/" title="View your price watches">View Price Watches</a>
+<button class="price-watch-remove" onclick="location.href='/account/profile/<%= accountData.account_id %>'">Edit Account Information</button>
 
-<p>You're logged in.</p>
-<a href="/account/profile/<%= accountData.account_id %>" title="Click to update your account information">Edit Account Information</a>
+<h3>Manage Your Price Watches</h3>
+<button class="price-watch-add" onclick="location.href='/price-watch/'">View Price Watches</button>
 
 <% if(accountData.account_type != 'Client'){ %>
-   <h3>Inventory Management</h3>
-  <p><a href="/inv/">Manage Inventory</a></p> 
+  <h3>Inventory Management</h3>  
+  <button class="price-watch-remove" onclick="location.href='/inv/'">Manage Inventory</button>
 <% } %>

@@ -14,8 +14,10 @@ async function test() {
     const watches = await priceWatchModel.getPriceWatchesByAccountId(1);
     console.log("Watches:", watches);
     // Test check price watches
-    const priceWatches = await priceWatchModel.checkPriceWatches(invId, targetPrice);
+
+    const priceWatches = await priceWatchModel.checkPriceWatchesOnManagement(accountId);
     console.log("Price Watches:", priceWatches);
+
     // Test delete
     const deleted = await priceWatchModel.deletePriceWatch(watch.watch_id, accountId);
     console.log("Deleted:", deleted);

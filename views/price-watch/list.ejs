@@ -9,13 +9,13 @@
     </ul>
   <% } %>
   <% if (priceWatches.length > 0) { %>
-    <table class="table">
+    <table class="price-watch-table">
       <thead>
         <tr>
           <th>Vehicle</th>
           <th>Current Price</th>
           <th>Target Price</th>
-          <th>Action</th>
+          <!-- <th>"-"</th> -->
         </tr>
       </thead>
       <tbody>
@@ -27,7 +27,7 @@
             <td>
               <form action="/price-watch/delete" method="POST" style="display:inline;">
                 <input type="hidden" name="watch_id" value="<%= watch.watch_id %>">
-                <button type="submit" class="btn btn-danger btn-sm">Remove</button>
+                <button type="submit" class="price-watch-remove">Remove</button>
               </form>
             </td>
           </tr>
@@ -37,5 +37,6 @@
   <% } else { %>
     <p>No price watches set.</p>
   <% } %>
-  <a href="/account/" class="btn btn-secondary">Back to Account</a>
+
+  <button class="price-watch-back" onclick="location.href='/account/'">Back to Account</button>
 </div>

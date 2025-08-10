@@ -1,5 +1,6 @@
 const utilities = require('../utilities')
 const accountModel = require('../models/account-model')
+const priceWatchModel = require("../models/price-watch-model");
 const { BodyElement } = require('../utilities/account-validation')
 const jwt = require("jsonwebtoken")
 const bcrypt = require('bcrypt')
@@ -134,12 +135,24 @@ async function accountLogin(req, res) {
 
 async function buildManagement(req, res, next) {
   let nav = await utilities.getNav()
-  res.render("account/management", {
-    title: "Account Management",
-    nav,
-    errors: null,
-    accountData: res.locals.accountData,
-  })
+  const account_id = res.locals.accountData.account_id;
+  try {
+    const priceWatchAlerts = await priceWatchModel.checkPriceWatchesOnManagement(account_id);
+    // Add flash messages for triggered price watches
+    if (priceWatchAlerts && priceWatchAlerts.length > 0) {
+      priceWatchAlerts.forEach(alert => {
+        req.flash(alert.type, alert.text);
+      });
+    }
+    res.render("account/management", {
+      title: "Account Management",
+      nav,
+      errors: null,
+      accountData: res.locals.accountData,
+    })
+  } catch (error) {
+    next(error);
+  }
 }
 
 async function accountLogout(req, res) {
